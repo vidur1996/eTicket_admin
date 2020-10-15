@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "163136165200",
+    "firebase_url": "https://eticket-bcb73.firebaseio.com",
+    "project_id": "eticket-bcb73",
+    "storage_bucket": "eticket-bcb73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163136165200:android:8b8f585be6233268b78855",
+        "android_client_info": {
+          "package_name": "com.example.eticket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163136165200-hbrak3fd1tuhnlrhau47hq41rogcb5u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_A32Z649j9RCj-tm1KJuS7b97O-fEGHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163136165200-hbrak3fd1tuhnlrhau47hq41rogcb5u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163136165200:android:e117030ecad7f567b78855",
+        "android_client_info": {
+          "package_name": "com.example.eticket_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163136165200-hbrak3fd1tuhnlrhau47hq41rogcb5u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_A32Z649j9RCj-tm1KJuS7b97O-fEGHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163136165200-hbrak3fd1tuhnlrhau47hq41rogcb5u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
