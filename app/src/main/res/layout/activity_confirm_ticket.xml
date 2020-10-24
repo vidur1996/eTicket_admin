@@ -45,7 +45,7 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:ems="10"
 
-        android:text="Name"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
 
-        android:text="Name"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
 
-        android:text="Name"
+
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +135,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
 
-        android:text="Name"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.469"
@@ -160,7 +160,7 @@
         android:layout_width="148dp"
         android:layout_height="47dp"
         android:layout_marginStart="44dp"
-        android:text="Button"
+        android:text="Reject"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/confirm_btn"
         app:layout_constraintHorizontal_bias="0.447"
