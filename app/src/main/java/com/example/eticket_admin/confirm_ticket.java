@@ -3,12 +3,15 @@ package com.example.eticket_admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,15 +19,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class confirm_ticket extends AppCompatActivity {
 String scandata,conname;
+Date current_time;
 String to="eror";
-    String cos_balance="eror";
+int customer_bal= 0;
 String from="eror";
 String cos_user="eror";
-String price="eror";
+String price="0";
 Button confirm1,reject1;
     DatabaseReference reffer1;
+
+    TextView id1;
 
 EditText to_txt,from_txt,price_txt,user_txt;
     @Override
@@ -39,7 +48,7 @@ EditText to_txt,from_txt,price_txt,user_txt;
             conname = extras.getString("uname");
         }
 
-
+        id1 = findViewById(R.id.id1);
         confirm1 = findViewById(R.id.confirm_btn);
         reject1 = findViewById(R.id.reject_btn);
         user_txt = findViewById(R.id.uname_txtcon);
@@ -51,41 +60,62 @@ EditText to_txt,from_txt,price_txt,user_txt;
         from_txt.setText(from);
         user_txt.setText(cos_user) ;
         price_txt.setText(price);
+        current_time = Calendar.getInstance().getTime();
+            final int iprice = Integer.parseInt(price) ;
 
-
-            confirm1.setOnClickListener(new View.OnClickListener() {
+            reffer1 = FirebaseDatabase.getInstance().getReference().child("member").child(cos_user);
+            reffer1.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onClick(View v) {
-                    reffer1 = FirebaseDatabase.getInstance().getReference().child("member").child(cos_user);
-                    reffer1.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            cos_balance = snapshot.child("balance").getValue().toString();
-                            if(Integer.parseInt(cos_balance)>Integer.parseInt(price))
-                            {
-                                int new_balance;
-                                new_balance = (Integer.parseInt(cos_balance)-Integer.parseInt(price));
-                                cos_balance = String.valueOf(new_balance);
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists() ){
+                        String customer_balance = snapshot.child("balance").getValue().toString();
+                        customer_bal = Integer.parseInt(customer_balance);
+                    }
+                    else
+                    {
+                        id1.setText("database error ");
+                    }
+                }
 
-                                 reffer1.child("balance").setValue(cos_balance);
-                                Toast.makeText(confirm_ticket.this,"ticket successful",Toast.LENGTH_SHORT);
-                            }
-                            else
-                            {
-                                Toast.makeText(confirm_ticket.this,"balance insufficient",Toast.LENGTH_SHORT);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
 
+            confirm1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(customer_bal>iprice)
+                    {
+                        customer_bal = customer_bal-iprice;
+                        reffer1.child("balance").setValue(customer_bal).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(confirm_ticket.this,"transaction succesful",Toast.LENGTH_SHORT);
+
+                                Intent i2 = new Intent(getApplicationContext(),timeout_screem.class);
+
+                                startActivity(i2);
+                                finish();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        id1.setText("value less ");
+                    }
+                }
+            });
+
+
+
     }
+
+
+
+
+
 
 
     public void breakdata(String scandata)

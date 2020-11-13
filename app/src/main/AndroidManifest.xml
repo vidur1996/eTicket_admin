@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".confirm_ticket"></activity>
+        <activity android:name=".timeout_screem"></activity>
+        <activity android:name=".confirm_ticket" />
         <activity android:name=".scan_ticket" />
         <activity android:name=".menu_topup" />
         <activity android:name=".menu_conductor" />
