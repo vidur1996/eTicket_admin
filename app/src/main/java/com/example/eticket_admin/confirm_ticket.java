@@ -24,7 +24,7 @@ import java.util.Date;
 
 public class confirm_ticket extends AppCompatActivity {
 String scandata,conname;
-Date current_time;
+
 String to="eror";
 int customer_bal= 0;
 String from="eror";
@@ -60,7 +60,7 @@ EditText to_txt,from_txt,price_txt,user_txt;
         from_txt.setText(from);
         user_txt.setText(cos_user) ;
         price_txt.setText(price);
-        current_time = Calendar.getInstance().getTime();
+
             final int iprice = Integer.parseInt(price) ;
 
             reffer1 = FirebaseDatabase.getInstance().getReference().child("member").child(cos_user);
@@ -73,7 +73,8 @@ EditText to_txt,from_txt,price_txt,user_txt;
                     }
                     else
                     {
-                        id1.setText("database error ");
+
+                        Toast.makeText(confirm_ticket.this,"database error",Toast.LENGTH_SHORT);
                     }
                 }
 
@@ -95,7 +96,8 @@ EditText to_txt,from_txt,price_txt,user_txt;
                                 Toast.makeText(confirm_ticket.this,"transaction succesful",Toast.LENGTH_SHORT);
 
                                 Intent i2 = new Intent(getApplicationContext(),timeout_screem.class);
-
+                                i2.putExtra("uname",conname);
+                                i2.putExtra("price",price);
                                 startActivity(i2);
                                 finish();
                             }

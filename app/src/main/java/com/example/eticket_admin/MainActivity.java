@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else if(utype.equals("conductor"))
                                     {
-                                        Intent star3 = new Intent(getApplicationContext(),menu_conductor.class);
+                                        Intent star3 = new Intent(getApplicationContext(),trip_setting.class);
                                         Toast.makeText(MainActivity.this,"Login as conductor",Toast.LENGTH_SHORT).show();
                                         star3.putExtra("uname",username);
                                         startActivity(star3);

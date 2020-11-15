@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class menu_conductor extends AppCompatActivity {
-    Button signout,scan_btn,history_btn;
+    Button signout,scan_btn,detail_btn;
     TextView user_txt;
     String uname;
     @Override
@@ -19,7 +19,7 @@ public class menu_conductor extends AppCompatActivity {
 
 
         signout  = findViewById(R.id.out_btn2);
-        history_btn = findViewById(R.id.his_btn);
+        detail_btn = findViewById(R.id.his_btn);
         scan_btn = findViewById(R.id.tic_btn);
         user_txt = findViewById(R.id.user_txt);
 
