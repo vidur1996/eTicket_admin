@@ -76,7 +76,7 @@ public class trip_setting extends AppCompatActivity {
         new_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(getApplicationContext(),new_trip_create.class);
+                Intent i1 = new Intent(getApplicationContext(),new_trip_create .class);
                 i1.putExtra("uname",uname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
