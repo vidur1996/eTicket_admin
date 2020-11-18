@@ -113,6 +113,7 @@ public class timeout_screem extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
 
                                 Intent i2 = new Intent(getApplicationContext(),menu_conductor.class);
+                                i2.putExtra("uname",conname);
                                 startActivity(i2);
                                 finish();
 

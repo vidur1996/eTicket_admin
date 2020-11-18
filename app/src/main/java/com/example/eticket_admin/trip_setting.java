@@ -3,7 +3,10 @@ package com.example.eticket_admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +26,7 @@ public class trip_setting extends AppCompatActivity {
     Button current_btn,new_btn,past_btn;
     String uname,bus_name;
     DatabaseReference reffer1;
-
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,20 @@ public class trip_setting extends AppCompatActivity {
         new_btn = findViewById(R.id.new_trip_btn);
         past_btn = findViewById(R.id.past_trip_btn);
         current_btn = findViewById(R.id.current_btn);
-
+        final String MyPREFERENCES = "trip_details" ;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String tripid = sharedpreferences.getString("trip_id", "");
+        text1.setText(tripid);
+        if(tripid.equals("")||tripid=="")
+        {
+            current_btn.setEnabled(false);
+            current_btn.setBackgroundColor(Color.GRAY);
+        }
+        else
+        {
+            new_btn.setEnabled(false);
+            new_btn.setBackgroundColor(Color.GRAY);
+        }
         Bundle extras = getIntent().getExtras();
         if (extras != null)
         {
@@ -66,10 +82,11 @@ public class trip_setting extends AppCompatActivity {
         current_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(getApplicationContext(),scan_ticket.class);
+                Intent i1 = new Intent(getApplicationContext(),menu_conductor.class);
                 i1.putExtra("uname",uname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
+                trip_setting.this.finish();
             }
         });
 
@@ -80,6 +97,8 @@ public class trip_setting extends AppCompatActivity {
                 i1.putExtra("uname",uname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
+                trip_setting.this.finish();
+
             }
         });
 

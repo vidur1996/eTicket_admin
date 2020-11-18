@@ -7,28 +7,32 @@
     android:background="#FFBB69"
     tools:context=".menu_conductor">
 
+    "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/his_btn"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
         android:id="@+id/out_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="144dp"
         android:background="#F39560"
         android:text="logout"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/his_btn"
-        app:layout_constraintVertical_bias="0.752" />
+        app:layout_constraintTop_toBottomOf="@+id/finish_trip_btn" />
 
     <Button
         android:id="@+id/tic_btn"
-        android:layout_width="130dp"
+        android:layout_width="242dp"
         android:layout_height="130dp"
-        android:text="Scan ticket"
         android:background="#D13807"
+        android:text="Scan ticket"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -53,8 +57,8 @@
 
     <Button
         android:id="@+id/his_btn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="242dp"
+        android:layout_height="128dp"
         android:background="#D13807"
         android:text="Current trip details"
         android:textColor="@android:color/background_light"
@@ -66,4 +70,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tic_btn"
         app:layout_constraintVertical_bias="0.085" />
+
+    <Button
+        android:id="@+id/finish_trip_btn"
+        android:layout_width="242dp"
+        android:layout_height="74dp"
+        android:text="FINISH TRIP"
+        android:background="#D13807"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/his_btn"
+        app:layout_constraintVertical_bias="0.16" />
 </androidx.constraintlayout.widget.ConstraintLayout>

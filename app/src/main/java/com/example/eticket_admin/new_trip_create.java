@@ -3,7 +3,9 @@ package com.example.eticket_admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class new_trip_create extends AppCompatActivity {
@@ -27,6 +27,7 @@ public class new_trip_create extends AppCompatActivity {
     String conname = "errorr",busname = "error",date1;
     DatabaseReference refferbus;
     Button confirm,back;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,12 @@ public class new_trip_create extends AppCompatActivity {
         confirm = findViewById(R.id.con_btn);
 
         back = findViewById(R.id.back_btn);
+        final String MyPREFERENCES = "trip_details" ;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null)
@@ -55,7 +62,8 @@ public class new_trip_create extends AppCompatActivity {
         con_name.setText(conname);
         bus_name.setText(busname);
         start_time.setText(date1);
-
+        editor.putString("trip_id", date1);
+        editor.commit();
         refferbus = FirebaseDatabase.getInstance().getReference().child("bus").child(busname).child("trip");
 
 
@@ -75,6 +83,8 @@ public class new_trip_create extends AppCompatActivity {
                                 Toast.makeText(new_trip_create.this,"added succesfully",Toast.LENGTH_LONG);
                                 Intent i3 = new Intent(getApplicationContext(),trip_setting.class);
                                 i3.putExtra("uname",conname);
+
+
                             startActivity(i3);
                             finish();
                             }
