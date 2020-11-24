@@ -53,7 +53,7 @@ public class new_trip_create extends AppCompatActivity {
         if (extras != null)
         {
 
-            conname = extras.getString("uname");
+            conname = extras.getString("conname");
             busname = extras.getString("bus_name");
         }
 
@@ -77,16 +77,17 @@ public class new_trip_create extends AppCompatActivity {
                         refferbus.child(date1).child("to").setValue(trip_to.getText().toString().trim());
                         refferbus.child(date1).child("from").setValue(trip_from.getText().toString().trim());
                         refferbus.child(date1).child("collection").setValue("0");
+                        refferbus.child(date1).child("passenger_count").setValue("0");
                         refferbus.child(date1).child("start time").setValue(date1).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(new_trip_create.this,"added succesfully",Toast.LENGTH_LONG);
                                 Intent i3 = new Intent(getApplicationContext(),trip_setting.class);
-                                i3.putExtra("uname",conname);
+                                i3.putExtra("conname",conname);
 
 
-                            startActivity(i3);
-                            finish();
+                                startActivity(i3);
+                                finish();
                             }
                         });
 
@@ -105,7 +106,15 @@ public class new_trip_create extends AppCompatActivity {
         });
 
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(getApplicationContext(),menu_conductor.class);
+                i2.putExtra("conname",conname);
+                startActivity(i2);
+                new_trip_create.this.finish();
+            }
+        });
 
 
 

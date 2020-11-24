@@ -23,7 +23,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 public class scan_ticket extends AppCompatActivity {
     CodeScanner codeScanner;
     CodeScannerView scannView;
-    String uname;
+    String conname,bus_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,8 @@ public class scan_ticket extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null)
         {
-            uname = extras.getString("uname");
+            conname = extras.getString("conname");
+            bus_name = extras.getString("bus_name");
         }
 
 
@@ -50,8 +51,10 @@ public class scan_ticket extends AppCompatActivity {
                         String data1 = result.getText();
                         Intent intent1 = new Intent(getApplicationContext(),confirm_ticket.class);
                         intent1.putExtra("scandata",data1);
-                        intent1.putExtra("uname",uname);
+                        intent1.putExtra("conname",conname);
+                        intent1.putExtra("bus_name",bus_name);
                         startActivity(intent1);
+                        scan_ticket.this.finish();
                     }
                 });
 

@@ -3,7 +3,9 @@ package com.example.eticket_admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -25,8 +27,9 @@ public class timeout_screem extends AppCompatActivity {
     String price,conname;
     String bus_name="error";
     int bus_bal=0;
+    int trip_bal =0;
     DatabaseReference reffer1,reffer2;
-
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +40,12 @@ public class timeout_screem extends AppCompatActivity {
         current_time = Calendar.getInstance().getTime();
         text_out.setText("ticket successful");
 
+        final String MyPREFERENCES = "trip_details" ;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+     final String tripid = sharedpreferences.getString("trip_id", "");
 
 
-        new CountDownTimer(3000,1000)
+        new CountDownTimer(3000,200)
         {
             @Override
             public void onTick(long millisUntilFinished)
@@ -48,7 +54,7 @@ public class timeout_screem extends AppCompatActivity {
                 if (extras != null)
                 {
 
-                    conname = extras.getString("uname");
+                    conname = extras.getString("conname");
                     price = extras.getString("price");
                 }
 
@@ -85,7 +91,11 @@ public class timeout_screem extends AppCompatActivity {
 
                         if (snapshot.exists() ){
                             String customer_balance = snapshot.child("revenue").getValue().toString();
+                            String trip_balance = snapshot.child("trip").child(tripid).child("collection").getValue().toString();
+                           // text_out.setText(tripid+"___"+trip_balance);
                             bus_bal = Integer.parseInt(customer_balance);
+                            trip_bal= Integer.parseInt(trip_balance);
+
                         }
                         else
                         {
@@ -105,21 +115,28 @@ public class timeout_screem extends AppCompatActivity {
             @Override
             public void onFinish() {
                 bus_bal = bus_bal + Integer.parseInt(price);
+                trip_bal = trip_bal+ Integer.parseInt(price);
                 reffer2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        reffer2.child("revenue").setValue(bus_bal).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        reffer2.child("trip").child(tripid).child("collection").setValue(trip_bal).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                reffer2.child("revenue").setValue(bus_bal).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
 
-                                Intent i2 = new Intent(getApplicationContext(),menu_conductor.class);
-                                i2.putExtra("uname",conname);
-                                startActivity(i2);
-                                finish();
-
+                                        Intent i2 = new Intent(getApplicationContext(),menu_conductor.class);
+                                        i2.putExtra("conname",conname);
+                                        i2.putExtra("bus_name",bus_name);
+                                        startActivity(i2);
+                                        timeout_screem.this.finish();
+                                    }
+                                });
 
                             }
                         });
+
 
                     }
 

@@ -24,7 +24,7 @@ public class trip_setting extends AppCompatActivity {
 
     TextView text1;
     Button current_btn,new_btn,past_btn;
-    String uname,bus_name;
+    String conname,bus_name;
     DatabaseReference reffer1;
     SharedPreferences sharedpreferences;
     @Override
@@ -53,9 +53,9 @@ public class trip_setting extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null)
         {
-            uname = extras.getString("uname");
+            conname = extras.getString("conname");
         }
-        reffer1 = FirebaseDatabase.getInstance().getReference().child("admin").child(uname);
+        reffer1 = FirebaseDatabase.getInstance().getReference().child("admin").child(conname);
         reffer1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -83,7 +83,7 @@ public class trip_setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i1 = new Intent(getApplicationContext(),menu_conductor.class);
-                i1.putExtra("uname",uname);
+                i1.putExtra("conname",conname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
                 trip_setting.this.finish();
@@ -94,7 +94,7 @@ public class trip_setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i1 = new Intent(getApplicationContext(),new_trip_create .class);
-                i1.putExtra("uname",uname);
+                i1.putExtra("conname",conname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
                 trip_setting.this.finish();

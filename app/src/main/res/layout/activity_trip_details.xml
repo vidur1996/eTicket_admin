@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFBB69"
-    tools:context=".new_trip_create">
+    tools:context=".trip_details">
 
     <TextView
         android:id="@+id/NEW11"
         android:layout_width="261dp"
         android:layout_height="36dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="New trip creator"
+        android:text="Trip Details "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -24,27 +24,26 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conductor Name"
+        android:layout_width="236dp"
+        android:layout_height="23dp"
+        android:text="current collection"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NEW11"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <EditText
-        android:id="@+id/con_name"
+        android:id="@+id/revenue"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:ems="10"
         android:focusable="false"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.539"
@@ -64,16 +63,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/con_name"
+        app:layout_constraintTop_toBottomOf="@+id/revenue"
         app:layout_constraintVertical_bias="0.024" />
 
     <EditText
-        android:id="@+id/trip_from"
+        android:id="@+id/trip_from1"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:ems="10"
+        android:focusable="false"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.539"
@@ -93,15 +92,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trip_from"
+        app:layout_constraintTop_toBottomOf="@+id/trip_from1"
         app:layout_constraintVertical_bias="0.027" />
 
     <EditText
-        android:id="@+id/trip_to"
+        android:id="@+id/trip_to1"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:ems="10"
-
+        android:focusable="false"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,17 +121,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.261"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trip_to"
+        app:layout_constraintTop_toBottomOf="@+id/trip_to1"
         app:layout_constraintVertical_bias="0.035" />
 
     <EditText
-        android:id="@+id/start_time"
+        android:id="@+id/start_time1"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:ems="10"
         android:focusable="false"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.561"
@@ -142,27 +140,26 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="98dp"
-        android:layout_height="25dp"
-        android:text="Bus Name"
+        android:layout_width="174dp"
+        android:layout_height="31dp"
+        android:text="No of Passengers"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_time"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintTop_toBottomOf="@+id/start_time1"
+        app:layout_constraintVertical_bias="0.061" />
 
     <EditText
-        android:id="@+id/bus_name"
+        android:id="@+id/pass_no"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:ems="10"
         android:focusable="false"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.561"
@@ -171,14 +168,14 @@
         app:layout_constraintVertical_bias="0.091" />
 
     <Button
-        android:id="@+id/con_btn"
+        android:id="@+id/pass_list"
         android:layout_width="261dp"
         android:layout_height="36dp"
-        android:text="Confirm"
+        android:text="passesnger List"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bus_name"
+        app:layout_constraintTop_toBottomOf="@+id/pass_no"
         app:layout_constraintVertical_bias="0.17" />
 
     <Button
@@ -189,6 +186,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/con_btn"
+        app:layout_constraintTop_toBottomOf="@+id/pass_list"
         app:layout_constraintVertical_bias="0.136" />
 </androidx.constraintlayout.widget.ConstraintLayout>

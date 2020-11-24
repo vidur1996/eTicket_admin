@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".new_trip_create"></activity>
+        <activity android:name=".trip_details"></activity>
+        <activity android:name=".new_trip_create" />
         <activity android:name=".trip_setting" />
         <activity android:name=".timeout_screem" />
         <activity android:name=".confirm_ticket" />
