@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FEC989"
-    tools:context=".confirm_ticket">
+    tools:context=".conductor.confirm_ticket">
 
     <TextView
         android:id="@+id/id1"

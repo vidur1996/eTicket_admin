@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFBB69"
-    tools:context=".menu_conductor">
+    tools:context=".conductor.menu_conductor">
 
     "
         app:layout_constraintEnd_toEndOf="parent"

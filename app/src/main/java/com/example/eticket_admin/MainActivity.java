@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.eticket_admin.admin.main_menu;
+import com.example.eticket_admin.conductor.trip_setting;
+import com.example.eticket_admin.topup.menu_topup;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                                 {
                                     if(utype.equals("admin"))
                                     {
-                                        Intent star2 = new Intent(getApplicationContext(),main_menu.class);
+                                        Intent star2 = new Intent(getApplicationContext(), main_menu.class);
                                         Toast.makeText(MainActivity.this,"Login as admin",Toast.LENGTH_SHORT).show();
                                         star2.putExtra("conname",username);
                                         startActivity(star2);
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else if(utype.equals("conductor"))
                                     {
-                                        Intent star3 = new Intent(getApplicationContext(),trip_setting.class);
+                                        Intent star3 = new Intent(getApplicationContext(), trip_setting.class);
                                         Toast.makeText(MainActivity.this,"Login as conductor",Toast.LENGTH_SHORT).show();
                                         star3.putExtra("conname",username);
                                         startActivity(star3);
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else if(utype.equals("topup"))
                                     {
-                                        Intent star4 = new Intent(getApplicationContext(),menu_topup.class);
+                                        Intent star4 = new Intent(getApplicationContext(), menu_topup.class);
                                         Toast.makeText(MainActivity.this,"Login as topup dealer",Toast.LENGTH_SHORT).show();
                                         star4.putExtra("conname",username);
                                         startActivity(star4);

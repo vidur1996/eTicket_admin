@@ -1,4 +1,4 @@
-package com.example.eticket_admin;
+package com.example.eticket_admin.conductor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.eticket_admin.MainActivity;
+import com.example.eticket_admin.R;
 
 public class menu_conductor extends AppCompatActivity {
     Button signout,scan_btn,detail_btn,finish_trip_btn;
@@ -51,7 +54,7 @@ public class menu_conductor extends AppCompatActivity {
         scan_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(getApplicationContext(),scan_ticket.class);
+                Intent i1 = new Intent(getApplicationContext(), scan_ticket.class);
                 i1.putExtra("conname",conname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
@@ -66,7 +69,7 @@ public class menu_conductor extends AppCompatActivity {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in1 = new Intent(getApplicationContext(),MainActivity.class);
+                Intent in1 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in1);
                 menu_conductor.this.finish();
             }
@@ -79,7 +82,7 @@ public class menu_conductor extends AppCompatActivity {
         detail_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(),trip_details.class);
+                Intent intent2 = new Intent(getApplicationContext(), trip_details.class);
 
                 intent2.putExtra("conname",conname);
                 intent2.putExtra("bus_name",bus_name);
@@ -99,7 +102,7 @@ public class menu_conductor extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("trip_id", "");
                 editor.commit();
-                Intent in1 = new Intent(getApplicationContext(),trip_setting.class);
+                Intent in1 = new Intent(getApplicationContext(), trip_setting.class);
                 in1.putExtra("conname",conname);
                 startActivity(in1);
                 menu_conductor.this.finish();

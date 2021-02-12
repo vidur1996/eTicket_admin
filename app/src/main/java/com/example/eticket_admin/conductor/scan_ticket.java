@@ -1,4 +1,4 @@
-package com.example.eticket_admin;
+package com.example.eticket_admin.conductor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.eticket_admin.R;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -49,7 +50,7 @@ public class scan_ticket extends AppCompatActivity {
                     public void run() {
                         //  resultData.setText(result.getText());
                         String data1 = result.getText();
-                        Intent intent1 = new Intent(getApplicationContext(),confirm_ticket.class);
+                        Intent intent1 = new Intent(getApplicationContext(), confirm_ticket.class);
                         intent1.putExtra("scandata",data1);
                         intent1.putExtra("conname",conname);
                         intent1.putExtra("bus_name",bus_name);

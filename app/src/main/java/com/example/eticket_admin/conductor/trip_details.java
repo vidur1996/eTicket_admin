@@ -1,17 +1,16 @@
-package com.example.eticket_admin;
+package com.example.eticket_admin.conductor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.eticket_admin.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -85,7 +84,7 @@ EditText revenue,trip_from1,trip_to1,start_time1,pass_no;
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i2 = new Intent(getApplicationContext(),menu_conductor.class);
+                Intent i2 = new Intent(getApplicationContext(), menu_conductor.class);
                 i2.putExtra("conname",conname);
                 i2.putExtra("bus_name",busname);
                 i2.putExtra("trip_id",tripid);

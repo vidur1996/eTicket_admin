@@ -4,91 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.main_menu">
-
-    <Button
-        android:id="@+id/out_btn1"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
-        android:layout_marginBottom="56dp"
-        android:text="logout"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_details_btn"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/add_btn"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
-        android:text="ADD USER"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adname_txt"
-        app:layout_constraintVertical_bias="0.054" />
-
-
-    <Button
-        android:id="@+id/remove_btn"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
-        android:text="REMOVE USER"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn"
-        app:layout_constraintVertical_bias="0.079" />
+    tools:context=".admin.adduser">
 
     <TextView
-        android:id="@+id/adname_txt"
+        android:id="@+id/txt"
         android:layout_width="320dp"
         android:layout_height="41dp"
+        android:gravity="center"
+        android:text="ADD NEW USERS"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.088" />
 
     <Button
-        android:id="@+id/fare_btn"
+        android:id="@+id/passenger_btn"
         android:layout_width="320dp"
         android:layout_height="87dp"
-        android:text="CHANGE FARE"
+        android:text="PASSENGER"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remove_btn"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintTop_toBottomOf="@+id/txt"
+        app:layout_constraintVertical_bias="0.073" />
 
     <Button
-        android:id="@+id/user_details_btn"
+        android:id="@+id/conductor_btn"
         android:layout_width="320dp"
         android:layout_height="87dp"
-        android:text="PROFILE"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="CONDUCTOR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passenger_btn"
+        app:layout_constraintVertical_bias="0.087" />
+
+    <Button
+        android:id="@+id/topup_btn"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:text="TOPUP DEALER"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fare_btn"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintTop_toBottomOf="@+id/conductor_btn"
+        app:layout_constraintVertical_bias="0.119" />
 
-
+    <Button
+        android:id="@+id/back_btn2"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:text="BACK"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topup_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,9 @@
-package com.example.eticket_admin;
+package com.example.eticket_admin.conductor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,16 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.eticket_admin.R;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class confirm_ticket extends AppCompatActivity {
 String scandata,conname,bus_name;
@@ -100,10 +95,11 @@ EditText to_txt,from_txt,price_txt,user_txt;
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(confirm_ticket.this,"transaction succesful",Toast.LENGTH_SHORT);
 
-                                Intent i2 = new Intent(getApplicationContext(),timeout_screem.class);
+                                Intent i2 = new Intent(getApplicationContext(), timeout_screem.class);
                                 i2.putExtra("conname",conname);
                                 i2.putExtra("price",price);
                                 i2.putExtra("bus_name",bus_name);
+                                i2.putExtra("pass_name",cos_user);
                                 startActivity(i2);
                                 finish();
                             }

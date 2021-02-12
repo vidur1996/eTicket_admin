@@ -1,4 +1,4 @@
-package com.example.eticket_admin;
+package com.example.eticket_admin.conductor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.eticket_admin.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -82,7 +83,7 @@ public class new_trip_create extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(new_trip_create.this,"added succesfully",Toast.LENGTH_LONG);
-                                Intent i3 = new Intent(getApplicationContext(),trip_setting.class);
+                                Intent i3 = new Intent(getApplicationContext(), trip_setting.class);
                                 i3.putExtra("conname",conname);
 
 
@@ -109,7 +110,7 @@ public class new_trip_create extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i2 = new Intent(getApplicationContext(),menu_conductor.class);
+                Intent i2 = new Intent(getApplicationContext(), menu_conductor.class);
                 i2.putExtra("conname",conname);
                 startActivity(i2);
                 new_trip_create.this.finish();

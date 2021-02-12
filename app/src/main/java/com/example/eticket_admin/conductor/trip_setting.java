@@ -1,4 +1,4 @@
-package com.example.eticket_admin;
+package com.example.eticket_admin.conductor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.eticket_admin.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,7 +83,7 @@ public class trip_setting extends AppCompatActivity {
         current_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(getApplicationContext(),menu_conductor.class);
+                Intent i1 = new Intent(getApplicationContext(), menu_conductor.class);
                 i1.putExtra("conname",conname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
@@ -93,7 +94,7 @@ public class trip_setting extends AppCompatActivity {
         new_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(getApplicationContext(),new_trip_create .class);
+                Intent i1 = new Intent(getApplicationContext(), new_trip_create.class);
                 i1.putExtra("conname",conname);
                 i1.putExtra("bus_name",bus_name);
                 startActivity(i1);
