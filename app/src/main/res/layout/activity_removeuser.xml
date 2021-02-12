@@ -6,4 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".admin.removeuser">
 
+    <TextView
+        android:id="@+id/r_txt"
+        android:layout_width="320dp"
+        android:layout_height="41dp"
+        android:gravity="center"
+        android:text="REMOVE USERS"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <Button
+        android:id="@+id/r_passenger_btn"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:text="PASSENGER"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_txt"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <Button
+        android:id="@+id/r_conductor_btn"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="CONDUCTOR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_passenger_btn"
+        app:layout_constraintVertical_bias="0.087" />
+
+    <Button
+        android:id="@+id/r_topup_btn"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:text="TOPUP DEALER"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_conductor_btn"
+        app:layout_constraintVertical_bias="0.119" />
+
+    <Button
+        android:id="@+id/r_back_btn2"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:text="BACK"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_topup_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

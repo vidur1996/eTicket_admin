@@ -6,4 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".admin.fare_update">
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="320dp"
+        android:layout_height="41dp"
+        android:gravity="center"
+        android:text="CHANGE FARE RATE"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <TextView
+        android:id="@+id/con_txt"
+        android:layout_width="320dp"
+        android:layout_height="41dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="403dp"
+        android:layout_height="7dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/con_txt"
+        app:layout_constraintVertical_bias="0.119" />
+
+    <TextView
+        android:id="@+id/n_txt"
+        android:layout_width="320dp"
+        android:layout_height="41dp"
+        android:gravity="center"
+        android:text="NEW RATE"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <EditText
+        android:id="@+id/new_fare_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/n_txt"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <Button
+        android:id="@+id/fare_update_btn"
+        android:layout_width="320dp"
+        android:layout_height="87dp"
+        android:text="UPDATE FARE"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/new_fare_txt"
+        app:layout_constraintVertical_bias="0.097" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

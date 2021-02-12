@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                                     {
                                         Intent star2 = new Intent(getApplicationContext(), main_menu.class);
                                         Toast.makeText(MainActivity.this,"Login as admin",Toast.LENGTH_SHORT).show();
-                                        star2.putExtra("conname",username);
+                                        star2.putExtra("adminname",username);
                                         startActivity(star2);
                                         username = "";
                                         pass="";
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                                     {
                                         Intent star4 = new Intent(getApplicationContext(), menu_topup.class);
                                         Toast.makeText(MainActivity.this,"Login as topup dealer",Toast.LENGTH_SHORT).show();
-                                        star4.putExtra("conname",username);
+                                        star4.putExtra("topname",username);
                                         startActivity(star4);
                                         username = "";
                                         pass="";
