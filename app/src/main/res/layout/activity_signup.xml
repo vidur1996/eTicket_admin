@@ -72,22 +72,24 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        tools:text="hello" />
 
     <EditText
         android:id="@+id/editText_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:hint="Email"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
+        android:hint="Email"
         android:inputType="textEmailAddress"
+        android:text="hello@g1.com"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
@@ -141,8 +143,10 @@
 
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
-        android:inputType="number"
         android:hint="Max 10 numbers"
+        android:inputType="number"
+        android:maxLength="10"
+        android:text="1234567890"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -183,8 +187,9 @@
 
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
-        android:inputType="text"
         android:hint="Username"
+        android:inputType="text"
+        android:text="test1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -231,12 +236,12 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-           android:id="@+id/password_edit"
+            android:id="@+id/password_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
 
-            />
+            android:text="12345" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
