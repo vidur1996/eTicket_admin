@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">eTicket_admin</string>
+
+    <string-array name="user_type">
+        <item>Administrator</item>
+        <item>Conductor</item>
+        <item>Top-up Dealer</item>
+    </string-array>
+
+
 </resources>
