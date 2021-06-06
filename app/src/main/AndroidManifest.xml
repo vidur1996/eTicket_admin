@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".topup.TopUpChangePasswordActivity"></activity>
-        <activity android:name=".admin.addpassenger" />
+        <activity android:name=".admin.confirmuser.ConfirmAdminActivity"></activity>
+        <activity android:name=".admin.confirmuser.ConfirmTopupActivity" />
+        <activity android:name=".admin.confirmuser.ConfirmConductorActivity" />
+        <activity android:name=".admin.confirmuser.ConfirmPassengerActivity" />
+        <activity android:name=".topup.TopUpChangePasswordActivity" />
         <activity android:name=".admin.admin_profile" />
         <activity android:name=".admin.fare_update" />
         <activity android:name=".admin.removeuser" />
