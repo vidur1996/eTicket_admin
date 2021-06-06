@@ -13,12 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eticket_admin.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-    private User[] userSet;
+  //  private User[] userSet;
+    private ArrayList<User> userset;
 
-    public UserAdapter(User[] userSet) {
-        this.userSet = userSet;
+
+    public UserAdapter(ArrayList<User> arrayList) {
+        //this.userSet = userSet;
+        userset = arrayList;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,10 +34,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             return viewHolder;
         }
         public void onBindViewHolder(ViewHolder holder, int position) {
-            final User myListData = userSet[position];
-            holder.tv_name.setText(userSet[position].name);
-            holder.tv_email.setText(userSet[position].email);
-            holder.tv_userName.setText(userSet[position].username);
+            final User myListData = userset.get(position);
+            holder.tv_name.setText(myListData.getName());
+            holder.tv_email.setText(myListData.getEmail());
+            holder.tv_userName.setText(myListData.getUsername());
 
 
         }
@@ -39,7 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         @Override
         public int getItemCount() {
-            return userSet.length;
+            return userset.size();
         }
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
