@@ -1,9 +1,10 @@
-package com.example.eticket_admin.admin.confirmuser.adapter;
+package com.example.eticket_admin.admin.removeuser.adapter;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,20 +15,20 @@ import com.example.eticket_admin.data.User;
 
 import java.util.ArrayList;
 
-public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdapter.ViewHolder> {
+public class RemoveConductorAdapter extends RecyclerView.Adapter<RemoveConductorAdapter.ViewHolder> {
 
     //  private User[] userSet;
     private ArrayList<User> userset;
-    onClickConductorAdapter callback;
+    onClickConductorRemoveAdapter callback;
 
-    public UserConductorAdapter(ArrayList<User> arrayList) {
+    public RemoveConductorAdapter(ArrayList<User> arrayList) {
         //this.userSet = userSet;
         userset = arrayList;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem = layoutInflater.inflate(R.layout.item_confirm_user, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.item_delete_user, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -36,18 +37,13 @@ public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdap
         holder.tv_name.setText(myListData.getName());
         holder.tv_email.setText(myListData.getEmail());
         holder.tv_userName.setText(myListData.getUsername());
-        holder.accept.setOnClickListener(new View.OnClickListener() {
+        holder.delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onAcceptClick(myListData,position);
+                callback.onDeleteClick(myListData,position);
             }
         });
-        holder.cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callback.onDeclineClick(myListData,position);
-            }
-        });
+
 
     }
 
@@ -61,25 +57,24 @@ public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdap
         TextView tv_name;
         TextView tv_email;
         TextView tv_userName;
-        ImageView cancel;
-        ImageView accept;
+        Button delete_btn;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_name = (TextView) itemView.findViewById(R.id.tv_name_confirm);
-            tv_email = (TextView) itemView.findViewById(R.id.tv_email_confirm);
-            tv_userName = (TextView) itemView.findViewById(R.id.tv_username_confirm);
-            accept = (ImageView) itemView.findViewById(R.id.accept_confirm);
-            cancel = (ImageView) itemView.findViewById(R.id.decline_confirm);
+            tv_name = (TextView) itemView.findViewById(R.id.tv_name_delete);
+            tv_email = (TextView) itemView.findViewById(R.id.tv_name_delete);
+            tv_userName = (TextView) itemView.findViewById(R.id.tv_name_delete);
+            delete_btn =(Button)itemView.findViewById(R.id.btn_delete_user);
+
 
         }
     }
-    public void onClickConductorAdapter(onClickConductorAdapter callback){
+    public void onClickConductorRemoveAdapter(onClickConductorRemoveAdapter callback){
         this.callback = callback;
     }
-    public interface onClickConductorAdapter {
-        public void onAcceptClick(User acceptUser,int index);
-        public void onDeclineClick(User declineUser,int index);
+    public interface onClickConductorRemoveAdapter {
+        public void onDeleteClick(User deleteUser,int index);
+
 
     }
 }

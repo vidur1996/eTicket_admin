@@ -1,4 +1,4 @@
-package com.example.eticket_admin.admin.confirmuser;
+package com.example.eticket_admin.admin.removeuser;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,8 +12,8 @@ import android.os.Bundle;
 
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.confirmuser.adapter.UserConductorAdapter;
-import com.example.eticket_admin.data.Admin;
+import com.example.eticket_admin.admin.removeuser.adapter.RemoveConductorAdapter;
+import com.example.eticket_admin.admin.removeuser.adapter.RemoveTopupAdapter;
 import com.example.eticket_admin.data.User;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
@@ -26,17 +26,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class ConfirmConductorActivity extends AppCompatActivity implements UserConductorAdapter.onClickConductorAdapter{
+public class RemoveTopupActivity extends AppCompatActivity implements RemoveTopupAdapter.onClickTopupRemoveAdapter {
     DatabaseReference databaseReference;
     ArrayList<User> list = new ArrayList<User>();
-    UserConductorAdapter adapter2;
+    RemoveTopupAdapter adapter2;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm_conductor);
+        setContentView(R.layout.activity_remove_topup);
         recycler();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("admin_pending").child("Conductor");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("admin");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
@@ -93,56 +93,21 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
     }
 
     public void recycler(){
-        recyclerView = (RecyclerView) findViewById(R.id.rv_confirm_conductor);
-         adapter2 = new UserConductorAdapter(list);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_remove_topup);
+        adapter2 = new RemoveTopupAdapter(list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter2);
-        adapter2.onClickConductorAdapter(this);
+        adapter2.onClickTopupRemoveAdapter(this );
     }
-    public void Alert(String title,String message,String positve_btn) {
-        new MaterialAlertDialogBuilder(ConfirmConductorActivity.this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(positve_btn, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
 
 
-                    }
-                }).show();
-
-    }
 
     @Override
-    public void onAcceptClick(User acceptUser, int index) {
-        Admin admin = new Admin();
-        admin.setName(acceptUser.name);
-        admin.setEmail(acceptUser.email);
-        admin.setNum(acceptUser.num);
-        admin.setUsername(acceptUser.username);
-        admin.setPassword(acceptUser.password);
-        admin.setType("conductor");
-
-        DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
-
-        DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Alert("Success","Passenger authorized","OK");
-            }
-        };
-        reff.child("admin").child(acceptUser.username).setValue(admin, completionListener);
-        reff.child("admin_pending").child("Conductor").child(acceptUser.username).removeValue();
-        list.remove(index);
-        adapter2.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onDeclineClick(User declineUser, int index) {
-        new MaterialAlertDialogBuilder(ConfirmConductorActivity.this)
+    public void onDeleteClick(User deleteUser, int index) {
+        new MaterialAlertDialogBuilder(RemoveTopupActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to reject "+declineUser.name)
+                .setMessage("Are you sure you want to remove  "+deleteUser.name+" from the database")
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -155,7 +120,7 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
                             }
                         };
 
-                        reff.child("admin_pending").child("Conductor").child(declineUser.username).removeValue();
+                        reff.child("admin").child(deleteUser.username).removeValue();
                         list.remove(index);
                         adapter2.notifyDataSetChanged();
 

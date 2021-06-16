@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.confirmuser.User;
+import com.example.eticket_admin.data.User;
 
 import java.util.ArrayList;
 

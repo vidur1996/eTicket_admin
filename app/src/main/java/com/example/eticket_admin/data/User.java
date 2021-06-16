@@ -1,4 +1,4 @@
-package com.example.eticket_admin.admin.confirmuser;
+package com.example.eticket_admin.data;
 
 public class User {
     public String name;
