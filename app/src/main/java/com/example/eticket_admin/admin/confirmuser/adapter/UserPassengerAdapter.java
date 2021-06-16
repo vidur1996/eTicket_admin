@@ -1,28 +1,27 @@
-package com.example.eticket_admin.admin.confirmuser;
+package com.example.eticket_admin.admin.confirmuser.adapter;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eticket_admin.R;
+import com.example.eticket_admin.admin.confirmuser.User;
+import com.example.eticket_admin.data.Member;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+public class UserPassengerAdapter extends RecyclerView.Adapter<UserPassengerAdapter.ViewHolder> {
 
   //  private User[] userSet;
-    private ArrayList<User> userset;
+    private ArrayList<Member> userset;
+    onClickPassengerAdapter callback;
 
-
-    public UserAdapter(ArrayList<User> arrayList) {
+    public UserPassengerAdapter(ArrayList<Member> arrayList) {
         //this.userSet = userSet;
         userset = arrayList;
     }
@@ -34,11 +33,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             return viewHolder;
         }
         public void onBindViewHolder(ViewHolder holder, int position) {
-            final User myListData = userset.get(position);
+            final Member myListData = userset.get(position);
             holder.tv_name.setText(myListData.getName());
             holder.tv_email.setText(myListData.getEmail());
             holder.tv_userName.setText(myListData.getUsername());
-
+            holder.accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.onAcceptClick(myListData,position);
+                }
+            });
+            holder.cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.onDeclineClick(myListData,position);
+                }
+            });
 
         }
 
@@ -65,4 +75,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             }
         }
+    public void onClickPassengerAdapter(onClickPassengerAdapter callback){
+        this.callback = callback;
+    }
+    public interface onClickPassengerAdapter {
+        public void onAcceptClick(Member acceptUser,int index);
+        public void onDeclineClick(Member declineUser,int index);
+
+    }
     }

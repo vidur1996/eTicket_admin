@@ -1,16 +1,15 @@
 package com.example.eticket_admin.data;
 
-public class Admin  {
+public class Member {
 
     String username;
     String name;
     String email;
-    String pnum;
+    String num;
     String password;
-    String type;
+    String lock;
 
-
-    public Admin()
+    public Member()
     {
 
     }
@@ -22,16 +21,6 @@ public class Admin  {
     public void setName(String name)
     {
         this.name = name;
-    }
-
-    public String getType()
-    {
-        return type;
-    }
-
-    public void setType(String type)
-    {
-        this.type =type;
     }
 
     public String getUsername()
@@ -48,7 +37,14 @@ public class Admin  {
     {
         return password;
     }
-
+    public String getLock()
+    {
+        return lock;
+    }
+    public void setLock(String lock)
+    {
+        this.lock=lock;
+    }
 
     public void setPassword(String password)
     {
@@ -56,11 +52,11 @@ public class Admin  {
     }
 
     public String getNum() {
-        return pnum;
+        return num;
     }
 
-    public void setNum(String pnum) {
-        this.pnum = pnum;
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public void setEmail(String email) {

@@ -12,6 +12,10 @@ import android.os.Bundle;
 
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
+import com.example.eticket_admin.admin.confirmuser.adapter.UserConductorAdapter;
+import com.example.eticket_admin.admin.confirmuser.adapter.UserPassengerAdapter;
+import com.example.eticket_admin.data.Admin;
+import com.example.eticket_admin.data.Member;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,10 +27,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class ConfirmPassengerActivity extends AppCompatActivity {
+public class ConfirmPassengerActivity extends AppCompatActivity implements UserPassengerAdapter.onClickPassengerAdapter {
     DatabaseReference databaseReference;
-    ArrayList<User> list = new ArrayList<User>();
-    UserAdapter adapter3;
+    ArrayList<Member> list = new ArrayList<Member>();
+    UserPassengerAdapter adapter3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +42,7 @@ public class ConfirmPassengerActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
                if(snapshot.exists())
                 {
-                    User value3 = snapshot.getValue(User.class);
+                    Member value3 = snapshot.getValue(Member.class);
                     list.add(value3);
                     adapter3.notifyDataSetChanged();
                 }
@@ -74,10 +78,11 @@ public class ConfirmPassengerActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_confirm_user);
-        adapter3 = new UserAdapter(list);
+        adapter3 = new UserPassengerAdapter(list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter3);
+        adapter3.onClickPassengerAdapter(this);
 
     }
 
@@ -95,5 +100,75 @@ public class ConfirmPassengerActivity extends AppCompatActivity {
                     }
                 }).show();
 
+    }
+    public void Alert(String title,String message,String positve_btn) {
+        new MaterialAlertDialogBuilder(ConfirmPassengerActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(positve_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                    }
+                }).show();
+
+    }
+
+    @Override
+    public void onAcceptClick(Member acceptUser, int index) {
+
+        Member mem = new Member();
+        mem.setName(acceptUser.getName());
+        mem.setEmail(acceptUser.getEmail());
+        mem.setNum(acceptUser.getNum());
+        mem.setUsername(acceptUser.getUsername());
+        mem.setPassword(acceptUser.getPassword());
+        mem.setLock(acceptUser.getLock());
+
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
+
+        DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                Alert("Success","Passenger authorized","OK");
+            }
+        };
+        reff.child("member").child(acceptUser.getUsername()).setValue(mem, completionListener);
+        reff.child("temp_member").child(acceptUser.getUsername()).removeValue();
+        list.remove(index);
+        adapter3.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDeclineClick(Member declineUser, int index) {
+        new MaterialAlertDialogBuilder(ConfirmPassengerActivity.this)
+                .setTitle("Alert")
+                .setMessage("Are you sure you want to reject "+declineUser.getName())
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
+
+                        DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+
+                            }
+                        };
+
+                        reff.child("temp_member").child(declineUser.getUsername()).removeValue();
+                        list.remove(index);
+                        adapter3.notifyDataSetChanged();
+
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                    }
+                }) .show();
     }
 }
