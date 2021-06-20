@@ -63,8 +63,8 @@ public class RemovePassengerAdapter extends RecyclerView.Adapter<RemovePassenger
         public ViewHolder(View itemView) {
             super(itemView);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name_delete);
-            tv_email = (TextView) itemView.findViewById(R.id.tv_name_delete);
-            tv_userName = (TextView) itemView.findViewById(R.id.tv_name_delete);
+            tv_email = (TextView) itemView.findViewById(R.id.tv_email_delete);
+            tv_userName = (TextView) itemView.findViewById(R.id.tv_username_delete);
             delete_btn =(Button)itemView.findViewById(R.id.btn_delete_user);
 
 

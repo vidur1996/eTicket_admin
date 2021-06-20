@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eticket_admin.R;
+import com.example.eticket_admin.data.Admin;
 import com.example.eticket_admin.data.User;
 
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ import java.util.ArrayList;
 public class RemoveConductorAdapter extends RecyclerView.Adapter<RemoveConductorAdapter.ViewHolder> {
 
     //  private User[] userSet;
-    private ArrayList<User> userset;
+    private ArrayList<Admin> userset;
     onClickConductorRemoveAdapter callback;
 
-    public RemoveConductorAdapter(ArrayList<User> arrayList) {
+    public RemoveConductorAdapter(ArrayList<Admin> arrayList) {
         //this.userSet = userSet;
         userset = arrayList;
     }
@@ -33,17 +34,15 @@ public class RemoveConductorAdapter extends RecyclerView.Adapter<RemoveConductor
         return viewHolder;
     }
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final User myListData = userset.get(position);
+        final Admin myListData = userset.get(position);
         holder.tv_name.setText(myListData.getName());
         holder.tv_email.setText(myListData.getEmail());
         holder.tv_userName.setText(myListData.getUsername());
-        holder.delete_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callback.onDeleteClick(myListData,position);
-            }
-        });
+        holder.delete_btn.setOnClickListener(v -> callback.onDeleteClick(myListData,position));
 
+        if (!myListData.getType().equals("conductor")){
+            holder.itemView.setLayoutParams( new RecyclerView.LayoutParams(0,0));
+        }
 
     }
 
@@ -62,8 +61,8 @@ public class RemoveConductorAdapter extends RecyclerView.Adapter<RemoveConductor
         public ViewHolder(View itemView) {
             super(itemView);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name_delete);
-            tv_email = (TextView) itemView.findViewById(R.id.tv_name_delete);
-            tv_userName = (TextView) itemView.findViewById(R.id.tv_name_delete);
+            tv_email = (TextView) itemView.findViewById(R.id.tv_email_delete);
+            tv_userName = (TextView) itemView.findViewById(R.id.tv_username_delete);
             delete_btn =(Button)itemView.findViewById(R.id.btn_delete_user);
 
 
@@ -73,7 +72,7 @@ public class RemoveConductorAdapter extends RecyclerView.Adapter<RemoveConductor
         this.callback = callback;
     }
     public interface onClickConductorRemoveAdapter {
-        public void onDeleteClick(User deleteUser,int index);
+        public void onDeleteClick(Admin deleteUser,int index);
 
 
     }

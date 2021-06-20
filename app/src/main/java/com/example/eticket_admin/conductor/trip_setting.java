@@ -61,7 +61,7 @@ public class trip_setting extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists() ){
-                    bus_name = snapshot.child("bus").getValue().toString();
+                  //  bus_name = snapshot.child("bus").getValue().toString();
 
                 }
                 else

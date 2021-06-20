@@ -14,6 +14,7 @@ import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.admin.removeuser.adapter.RemoveConductorAdapter;
 import com.example.eticket_admin.admin.removeuser.adapter.RemoveTopupAdapter;
+import com.example.eticket_admin.data.Admin;
 import com.example.eticket_admin.data.User;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 public class RemoveTopupActivity extends AppCompatActivity implements RemoveTopupAdapter.onClickTopupRemoveAdapter {
     DatabaseReference databaseReference;
-    ArrayList<User> list = new ArrayList<User>();
+    ArrayList<Admin> list = new ArrayList<Admin>();
     RemoveTopupAdapter adapter2;
     RecyclerView recyclerView;
     @Override
@@ -42,7 +43,7 @@ public class RemoveTopupActivity extends AppCompatActivity implements RemoveTopu
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
                 if(snapshot.exists())
                 {
-                    User value2 = snapshot.getValue(User.class);
+                    Admin value2 = snapshot.getValue(Admin.class);
                     list.add(value2);
                     adapter2.notifyDataSetChanged();
                 }
@@ -104,10 +105,10 @@ public class RemoveTopupActivity extends AppCompatActivity implements RemoveTopu
 
 
     @Override
-    public void onDeleteClick(User deleteUser, int index) {
+    public void onDeleteClick(Admin deleteUser, int index) {
         new MaterialAlertDialogBuilder(RemoveTopupActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to remove  "+deleteUser.name+" from the database")
+                .setMessage("Are you sure you want to remove  "+deleteUser.getName()+" from the database")
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -120,7 +121,7 @@ public class RemoveTopupActivity extends AppCompatActivity implements RemoveTopu
                             }
                         };
 
-                        reff.child("admin").child(deleteUser.username).removeValue();
+                        reff.child("admin").child(deleteUser.getUsername()).removeValue();
                         list.remove(index);
                         adapter2.notifyDataSetChanged();
 

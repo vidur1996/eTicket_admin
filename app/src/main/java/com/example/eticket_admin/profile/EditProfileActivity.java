@@ -1,16 +1,14 @@
-package com.example.eticket_admin.admin;
+package com.example.eticket_admin.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.example.eticket_admin.R;
 
-public class admin_profile extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_profile);
+        setContentView(R.layout.activity_edit_profile);
     }
 }

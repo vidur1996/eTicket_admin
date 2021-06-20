@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.admin.removeuser.removeuser;
+import com.example.eticket_admin.profile.ChangePasswordActivity;
+import com.example.eticket_admin.profile.ProfileActivity;
 
 public class main_menu extends AppCompatActivity {
 Button signout_btn,adduser_btn,removeuser_btn,fare_btn,u_details_btn;
@@ -83,11 +85,10 @@ String adminname;
         u_details_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in1 = new Intent(getApplicationContext(), admin_profile.class);
-
-
+                Intent in1 = new Intent(getApplicationContext(), ProfileActivity.class);
+                in1.putExtra("uname",adminname);
                 startActivity(in1);
-                main_menu.this.finish();
+              //  main_menu.this.finish();
             }
         });
     }

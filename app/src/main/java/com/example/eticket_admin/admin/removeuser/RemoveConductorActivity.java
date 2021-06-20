@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class RemoveConductorActivity extends AppCompatActivity implements RemoveConductorAdapter.onClickConductorRemoveAdapter {
     DatabaseReference databaseReference;
-    ArrayList<User> list = new ArrayList<User>();
+    ArrayList<Admin> list = new ArrayList<Admin>();
     RemoveConductorAdapter adapter2;
     RecyclerView recyclerView;
     @Override
@@ -44,9 +44,12 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
                 if(snapshot.exists())
                 {
-                    User value2 = snapshot.getValue(User.class);
-                    list.add(value2);
-                    adapter2.notifyDataSetChanged();
+                    Admin value2 = snapshot.getValue(Admin.class);
+                   // if(value2.getType().toString()=="conductor"){
+                        list.add(value2);
+                        adapter2.notifyDataSetChanged();
+                  //  }
+
                 }
                 else{
 
@@ -106,10 +109,10 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
 
 
     @Override
-    public void onDeleteClick(User deleteUser, int index) {
+    public void onDeleteClick(Admin deleteUser, int index) {
         new MaterialAlertDialogBuilder(RemoveConductorActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to remove  "+deleteUser.name+" from the database")
+                .setMessage("Are you sure you want to remove  "+deleteUser.getName()+" from the database")
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -122,7 +125,7 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
                             }
                         };
 
-                        reff.child("admin").child(deleteUser.username).removeValue();
+                        reff.child("admin").child(deleteUser.getUsername()).removeValue();
                         list.remove(index);
                         adapter2.notifyDataSetChanged();
 

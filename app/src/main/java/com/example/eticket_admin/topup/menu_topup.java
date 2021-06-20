@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.signup;
+import com.example.eticket_admin.profile.ProfileActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,10 +59,10 @@ public class menu_topup extends AppCompatActivity {
         change_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in1 = new Intent(getApplicationContext(),TopUpChangePasswordActivity.class);
-                in1.putExtra("topname",topname);
+                Intent in1 = new Intent(getApplicationContext(), ProfileActivity.class);
+                in1.putExtra("uname",topname);
                 startActivity(in1);
-                menu_topup.this.finish();
+              //  menu_topup.this.finish();
             }
         });
 
