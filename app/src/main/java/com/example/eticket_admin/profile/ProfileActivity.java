@@ -30,6 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button btn_editProfile;
     TextView tv_name,tv_email,tv_phone,tv_username;
     String uname;
+    String name,email,phone;
     DatabaseReference reff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,9 @@ public class ProfileActivity extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String name = snapshot.child("name").getValue().toString();
-                String phone = snapshot.child("num").getValue().toString();
-                String email = snapshot.child("email").getValue().toString();
+                 name = snapshot.child("name").getValue().toString();
+                 phone = snapshot.child("num").getValue().toString();
+                 email = snapshot.child("email").getValue().toString();
              tv_email.setText(email);
              tv_name.setText(name);
              tv_phone.setText(phone);
@@ -72,6 +73,9 @@ public class ProfileActivity extends AppCompatActivity {
         btn_editProfile.setOnClickListener(v -> {
             Intent in1 = new Intent(getApplicationContext(), EditProfileActivity.class);
             in1.putExtra("uname",uname);
+            in1.putExtra("name",name);
+            in1.putExtra("phone",phone);
+            in1.putExtra("email",email);
             startActivity(in1);
         });
         btn_changePassword.setOnClickListener(v -> {
