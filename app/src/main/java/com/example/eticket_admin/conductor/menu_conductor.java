@@ -15,7 +15,7 @@ import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
 
 public class menu_conductor extends AppCompatActivity {
-    Button signout,scan_btn,detail_btn,finish_trip_btn;
+    Button scan_btn,detail_btn,finish_trip_btn;
     TextView user_txt;
     String conname,bus_name;
     SharedPreferences sharedpreferences;
@@ -25,7 +25,7 @@ public class menu_conductor extends AppCompatActivity {
         setContentView(R.layout.activity_menu_conductor);
 
 
-        signout  = findViewById(R.id.out_btn2);
+
         detail_btn = findViewById(R.id.his_btn);
         scan_btn = findViewById(R.id.tic_btn);
         user_txt = findViewById(R.id.user_txt);
@@ -66,14 +66,7 @@ public class menu_conductor extends AppCompatActivity {
 
 
 
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in1 = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(in1);
-                menu_conductor.this.finish();
-            }
-        });
+
 
         user_txt.setText(conname+"<"+bus_name+"<"+tripid);
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eticket_admin.admin.main_menu;
+import com.example.eticket_admin.conductor.ConductorMainActivity;
 import com.example.eticket_admin.conductor.trip_setting;
 import com.example.eticket_admin.topup.menu_topup;
 import com.google.firebase.database.DataSnapshot;
@@ -116,12 +117,13 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else if(utype.equals("conductor"))
                                     {
-                                        Intent star3 = new Intent(getApplicationContext(), trip_setting.class);
+                                        Intent star3 = new Intent(getApplicationContext(), ConductorMainActivity.class);
                                         Toast.makeText(MainActivity.this,"Login as conductor",Toast.LENGTH_SHORT).show();
                                         star3.putExtra("conname",username);
                                         startActivity(star3);
                                         username = "";
                                         pass="";
+                                        startActivity(star3);
                                         MainActivity.this.finish();
                                     }
                                     else if(utype.equals("topup"))

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,8 +47,9 @@ public class fare_update extends AppCompatActivity {
     fare_reffer.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            fare = snapshot.child("rate").toString().trim();
+            fare = snapshot.child("rate").getValue().toString().trim();
             con_txt.setText(text + " - "+fare);
+            Log.e("****",text + " - "+fare);
         }
 
         @Override
@@ -65,6 +67,7 @@ public class fare_update extends AppCompatActivity {
             public void onClick(View v) {
                 String n_fare = new_fare.getText().toString().trim();
                 fare_reffer.child("rate").setValue(n_fare);
+
                 Intent inout = new Intent(getApplicationContext(), main_menu.class);
                     inout.putExtra("adminname",adminname);
 

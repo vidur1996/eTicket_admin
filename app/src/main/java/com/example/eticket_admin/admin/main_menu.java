@@ -15,7 +15,7 @@ import com.example.eticket_admin.profile.ChangePasswordActivity;
 import com.example.eticket_admin.profile.ProfileActivity;
 
 public class main_menu extends AppCompatActivity {
-Button signout_btn,adduser_btn,removeuser_btn,fare_btn,u_details_btn;
+Button signout_btn,adduser_btn,removeuser_btn,fare_btn,u_details_btn,add_bus_btn;
 String adminname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ String adminname;
         adduser_btn  = findViewById(R.id.add_btn);
         removeuser_btn  = findViewById(R.id.remove_btn);
         fare_btn  = findViewById(R.id.fare_btn);
+        add_bus_btn  = findViewById(R.id.add_bus_btn);
         u_details_btn  = findViewById(R.id.user_details_btn);
 
         Bundle extras = getIntent().getExtras();
@@ -89,6 +90,14 @@ String adminname;
                 in1.putExtra("uname",adminname);
                 startActivity(in1);
               //  main_menu.this.finish();
+            }
+        });
+        add_bus_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in1 = new Intent(getApplicationContext(), AddBusActivity.class);
+                in1.putExtra("uname",adminname);
+                startActivity(in1);
             }
         });
     }

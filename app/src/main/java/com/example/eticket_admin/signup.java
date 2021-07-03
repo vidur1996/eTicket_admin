@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,8 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signup extends AppCompatActivity {
     EditText password_edit, editText_email, editText_name, editText_phone, editText_username;
-    EditText confirm_password_edit;
-    TextView password_error, email_error;
+    EditText confirm_password_edit,editText_busId;
+    TextView password_error, email_error,tv_bus_label;
     Button signup;
     String password;
     Spinner spinner_userType;
@@ -44,14 +46,33 @@ public class signup extends AppCompatActivity {
         editText_email = findViewById(R.id.editText_email);
         email_error = findViewById(R.id.text_email_error);
         editText_name = findViewById(R.id.editText_name);
+        editText_busId  = findViewById(R.id.editText_bus_id);
         editText_phone = findViewById(R.id.editText_phone);
         editText_username = findViewById(R.id.editText_username);
-
+        tv_bus_label = findViewById(R.id.tv_bus_label);
         ArrayAdapter<String> myadapter = new ArrayAdapter<String>(signup.this
                 , android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.user_type));
         myadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_userType.setAdapter(myadapter);
 
+
+        spinner_userType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (String.valueOf(spinner_userType.getSelectedItemId())=="1"){
+                    editText_busId.setVisibility(View.VISIBLE);
+                    tv_bus_label.setVisibility(View.VISIBLE);
+                }else {
+                    editText_busId.setVisibility(View.GONE);
+                    tv_bus_label.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         editText_email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -80,7 +101,7 @@ public class signup extends AppCompatActivity {
                 String utype = spinner_userType.getSelectedItem().toString();
                 String pass1 = password_edit.getText().toString().trim();
                 String pass2 = confirm_password_edit.getText().toString().trim();
-                if (comparePassword(pass1, pass2) && verifyData()) {
+                if (comparePassword(pass1, pass2) && verifyData(utype)) {
                     if (saveData(utype, password)) {
                         Toast.makeText(signup.this, "registration successful", Toast.LENGTH_LONG).show();
                         showAlert();
@@ -132,12 +153,17 @@ public class signup extends AppCompatActivity {
         admin.setUsername(editText_username.getText().toString().trim());
         admin.setPassword(password);
 
+
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("admin_pending").child(utype);
         final boolean[] check = {true};
         DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 check[0] = error == null;
+                if (utype=="Conductor")
+                {
+                    reff.child(editText_username.getText().toString().trim()).child("bus").setValue(editText_busId.getText());
+                }
             }
         };
         reff.child(editText_username.getText().toString().trim()).setValue(admin, completionListener);
@@ -145,7 +171,7 @@ public class signup extends AppCompatActivity {
         return check[0];
     }
 
-    public Boolean verifyData() {
+    public Boolean verifyData(String utype) {
         if (editText_username.getText().toString().equals("")) {
             Toast.makeText(signup.this, "username required", Toast.LENGTH_LONG).show();
             return false;
@@ -161,7 +187,11 @@ public class signup extends AppCompatActivity {
         if (editText_phone.getText().toString().equals("")) {
             Toast.makeText(signup.this, "phone number required", Toast.LENGTH_LONG).show();
             return false;
-        } else {
+        }
+        if(utype=="Conductor" && editText_busId.getText().toString().equals("")){
+            Toast.makeText(signup.this, "bus id required", Toast.LENGTH_LONG).show();
+            return false;
+        }else {
             return true;
         }
 

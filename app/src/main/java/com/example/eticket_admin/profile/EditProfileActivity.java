@@ -28,7 +28,7 @@ public class EditProfileActivity extends AppCompatActivity {
     String name,email,phone;
     Button btn_saveProfile;
     TextView mail_error;
-    Boolean checkEmail=false;
+    Boolean checkEmail=true;
     EditText et_name,et_email,et_phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +66,13 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public Boolean validdata(){
-        if(et_name.getText().toString()==""){
+        if(et_name.getText().toString().equals("")){
             Toast.makeText(this, "name required", Toast.LENGTH_LONG).show();
             return false;
-        }else if (et_phone.getText().toString()==""){
+        }else if (et_phone.getText().toString().equals("")){
             Toast.makeText(this, "phone number required", Toast.LENGTH_LONG).show();
             return false;
-        }else if(et_email.getText().toString()==""){
+        }else if(et_email.getText().toString().equals("")){
             Toast.makeText(this, "email required", Toast.LENGTH_LONG).show();
             return false;
         }else {
