@@ -152,6 +152,11 @@ public class signup extends AppCompatActivity {
         admin.setNum(editText_phone.getText().toString().trim());
         admin.setUsername(editText_username.getText().toString().trim());
         admin.setPassword(password);
+        if(!editText_busId.getText().toString().trim().equals("")){
+            admin.setBus(editText_busId.getText().toString().trim());
+        }else {
+            admin.setBus("0");
+        }
 
 
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("admin_pending").child(utype);
@@ -160,10 +165,7 @@ public class signup extends AppCompatActivity {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 check[0] = error == null;
-                if (utype=="Conductor")
-                {
-                    reff.child(editText_username.getText().toString().trim()).child("bus").setValue(editText_busId.getText());
-                }
+
             }
         };
         reff.child(editText_username.getText().toString().trim()).setValue(admin, completionListener);

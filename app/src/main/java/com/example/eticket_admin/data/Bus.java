@@ -5,6 +5,15 @@ public class Bus {
     String busNumber;
     String owner;
     String conductor;
+    int revenue;
+
+    public int getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(int revenue) {
+        this.revenue = revenue;
+    }
 
     public Bus() {
 

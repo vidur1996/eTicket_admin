@@ -103,6 +103,17 @@ public class trip_setting extends AppCompatActivity {
             }
         });
 
+        past_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i1 = new Intent(getApplicationContext(), OldTripsActivity.class);
+                i1.putExtra("conname",conname);
+                i1.putExtra("bus_name",bus_name);
+                startActivity(i1);
+                trip_setting.this.finish();
+            }
+        });
+
 
 
 

@@ -122,6 +122,7 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
         admin.setNum(acceptUser.num);
         admin.setUsername(acceptUser.username);
         admin.setPassword(acceptUser.password);
+        admin.setBus(acceptUser.bus);
         admin.setType("conductor");
 
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference();

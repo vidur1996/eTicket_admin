@@ -74,12 +74,12 @@ public class new_trip_create extends AppCompatActivity {
                 refferbus.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        refferbus.child(date1).child("conductor name").setValue(conname);
-                        refferbus.child(date1).child("to").setValue(trip_to.getText().toString().trim());
-                        refferbus.child(date1).child("from").setValue(trip_from.getText().toString().trim());
+                        refferbus.child(date1).child("conductorName").setValue(conname);
+                        refferbus.child(date1).child("toTrip").setValue(trip_to.getText().toString().trim());
+                        refferbus.child(date1).child("fromTrip").setValue(trip_from.getText().toString().trim());
                         refferbus.child(date1).child("collection").setValue("0");
-                        refferbus.child(date1).child("passenger_count").setValue("0");
-                        refferbus.child(date1).child("start time").setValue(date1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        refferbus.child(date1).child("passengerCount").setValue("0");
+                        refferbus.child(date1).child("startTime").setValue(date1).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(new_trip_create.this,"added succesfully",Toast.LENGTH_LONG);

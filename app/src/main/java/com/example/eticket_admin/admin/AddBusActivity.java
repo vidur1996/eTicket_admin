@@ -132,6 +132,7 @@ public class AddBusActivity extends AppCompatActivity {
         bus.setBusNumber(et_number.getText().toString().trim());
         bus.setConductor(et_conductor.getText().toString().trim());
         bus.setOwner(et_owner.getText().toString().trim());
+        bus.setRevenue(0);
 
 
         DatabaseReference reff2 = FirebaseDatabase.getInstance().getReference().child("bus");

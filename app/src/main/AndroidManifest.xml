@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".conductor.ConductorMainActivity"></activity>
+        <activity android:name=".conductor.OldTripsActivity"></activity>
+        <activity android:name=".conductor.ConductorMainActivity" />
         <activity android:name=".admin.AddBusActivity" />
         <activity android:name=".profile.EditProfileActivity" />
         <activity android:name=".admin.removeuser.RemoveTopupActivity" />

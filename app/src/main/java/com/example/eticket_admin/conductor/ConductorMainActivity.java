@@ -53,7 +53,7 @@ String conname;
             @Override
             public void onClick(View v) {
                 Intent in1 = new Intent(getApplicationContext(),trip_setting.class);
-                in1.putExtra("uname",conname);
+                in1.putExtra("conname",conname);
                 startActivity(in1);
             }
         });

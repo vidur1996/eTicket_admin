@@ -56,7 +56,7 @@
         android:layout_width="325dp"
         android:layout_height="87dp"
         android:background="#D13807"
-        android:text="Old Trip"
+        android:text="Old Trips"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         android:textStyle="bold"
