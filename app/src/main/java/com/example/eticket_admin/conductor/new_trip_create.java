@@ -64,6 +64,7 @@ public class new_trip_create extends AppCompatActivity {
         bus_name.setText(busname);
         start_time.setText(date1);
         editor.putString("trip_id", date1);
+        editor.putString("busId",busname);
         editor.commit();
         refferbus = FirebaseDatabase.getInstance().getReference().child("bus").child(busname).child("trip");
 
