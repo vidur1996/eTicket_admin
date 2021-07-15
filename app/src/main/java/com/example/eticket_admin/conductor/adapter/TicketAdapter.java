@@ -4,22 +4,18 @@ package com.example.eticket_admin.conductor.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.data.Ticket;
-import com.example.eticket_admin.data.User;
+
 import java.util.ArrayList;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
-
-    //  private User[] userSet;
-    private ArrayList<Ticket> userset;
-
-
+    private final ArrayList<Ticket> userset;
     public TicketAdapter(ArrayList<Ticket> arrayList) {
-        //this.userSet = userSet;
         userset = arrayList;
     }
 
@@ -30,17 +26,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         return viewHolder;
     }
 
-
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Ticket myListData = userset.get(position);
         holder.ticket_no.setText(myListData.getTicketNo());
         holder.ticket_from.setText(myListData.getTicketFrom());
         holder.ticket_to.setText(myListData.getTicketTo());
         holder.ticket_user.setText(myListData.getUserName());
-        holder.ticket_value.setText("Rs."+myListData.getTicketValue());
-
+        holder.ticket_value.setText("Rs." + myListData.getTicketValue());
     }
-
 
     @Override
     public int getItemCount() {

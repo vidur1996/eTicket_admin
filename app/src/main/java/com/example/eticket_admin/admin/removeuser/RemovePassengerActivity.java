@@ -1,21 +1,19 @@
 package com.example.eticket_admin.admin.removeuser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.removeuser.adapter.RemoveConductorAdapter;
 import com.example.eticket_admin.admin.removeuser.adapter.RemovePassengerAdapter;
 import com.example.eticket_admin.data.Member;
-import com.example.eticket_admin.data.User;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,9 +27,10 @@ import java.util.ArrayList;
 
 public class RemovePassengerActivity extends AppCompatActivity implements RemovePassengerAdapter.onClickPassengerRemoveAdapter {
     DatabaseReference databaseReference;
-    ArrayList<Member> list = new ArrayList< Member>();
+    ArrayList<Member> list = new ArrayList<Member>();
     RemovePassengerAdapter adapter2;
     RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +40,11 @@ public class RemovePassengerActivity extends AppCompatActivity implements Remove
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                if(snapshot.exists())
-                {
+                if (snapshot.exists()) {
                     Member value2 = snapshot.getValue(Member.class);
                     list.add(value2);
                     adapter2.notifyDataSetChanged();
-                }
-                else{
+                } else {
 
                     showAlert();
                 }
@@ -77,6 +74,7 @@ public class RemovePassengerActivity extends AppCompatActivity implements Remove
 
 
     }
+
     public void showAlert() {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Alert")
@@ -93,13 +91,13 @@ public class RemovePassengerActivity extends AppCompatActivity implements Remove
 
     }
 
-    public void recycler(){
+    public void recycler() {
         recyclerView = (RecyclerView) findViewById(R.id.rv_remove_passenger);
         adapter2 = new RemovePassengerAdapter(list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter2);
-        adapter2.onClickPassengerRemoveAdapter(this );
+        adapter2.onClickPassengerRemoveAdapter(this);
     }
 
 
@@ -107,7 +105,7 @@ public class RemovePassengerActivity extends AppCompatActivity implements Remove
     public void onDeleteClick(Member deleteUser, int index) {
         new MaterialAlertDialogBuilder(RemovePassengerActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to remove  "+deleteUser.getName()+" from the database")
+                .setMessage("Are you sure you want to remove  " + deleteUser.getName() + " from the database")
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -132,6 +130,6 @@ public class RemovePassengerActivity extends AppCompatActivity implements Remove
 
 
                     }
-                }) .show();
+                }).show();
     }
 }

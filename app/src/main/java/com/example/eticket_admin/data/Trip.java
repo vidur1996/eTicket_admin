@@ -1,8 +1,5 @@
 package com.example.eticket_admin.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Trip {
     String conductorName;
     Long collection;

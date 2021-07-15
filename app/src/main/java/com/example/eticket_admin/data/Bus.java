@@ -7,16 +7,16 @@ public class Bus {
     String conductor;
     int revenue;
 
+    public Bus() {
+
+    }
+
     public int getRevenue() {
         return revenue;
     }
 
     public void setRevenue(int revenue) {
         this.revenue = revenue;
-    }
-
-    public Bus() {
-
     }
 
     public String getBusId() {

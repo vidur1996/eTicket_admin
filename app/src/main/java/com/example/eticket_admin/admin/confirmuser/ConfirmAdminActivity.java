@@ -1,14 +1,14 @@
 package com.example.eticket_admin.admin.confirmuser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
 
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
@@ -40,15 +40,13 @@ public class ConfirmAdminActivity extends AppCompatActivity implements UserAdmin
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                if(snapshot.exists())
-                {
-                    User value= snapshot.getValue(User.class);
+                if (snapshot.exists()) {
+                    User value = snapshot.getValue(User.class);
                     list.add(value);
                     adapter.notifyDataSetChanged();
-                }
-                else{
+                } else {
 
-                    showAlert("Alert","No pending request","GOT IT");
+                    showAlert("Alert", "No pending request", "GOT IT");
                 }
 
 
@@ -76,8 +74,6 @@ public class ConfirmAdminActivity extends AppCompatActivity implements UserAdmin
         });
 
 
-
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_confirm_admin);
         adapter = new UserAdminAdapter(list);
         recyclerView.setHasFixedSize(true);
@@ -86,7 +82,7 @@ public class ConfirmAdminActivity extends AppCompatActivity implements UserAdmin
         adapter.onClickAdminAdapter(this);
     }
 
-    public void showAlert(String title,String message,String positve_btn) {
+    public void showAlert(String title, String message, String positve_btn) {
         new MaterialAlertDialogBuilder(ConfirmAdminActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -102,7 +98,7 @@ public class ConfirmAdminActivity extends AppCompatActivity implements UserAdmin
 
     }
 
-    public void Alert(String title,String message,String positve_btn) {
+    public void Alert(String title, String message, String positve_btn) {
         new MaterialAlertDialogBuilder(ConfirmAdminActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -116,35 +112,35 @@ public class ConfirmAdminActivity extends AppCompatActivity implements UserAdmin
 
     }
 
-      @Override
-    public void onAcceptClick(User acceptUser,int index) {
-          Admin admin = new Admin();
-          admin.setName(acceptUser.name);
-          admin.setEmail(acceptUser.email);
-          admin.setNum(acceptUser.num);
-          admin.setUsername(acceptUser.username);
-          admin.setPassword(acceptUser.password);
-          admin.setType("admin");
+    @Override
+    public void onAcceptClick(User acceptUser, int index) {
+        Admin admin = new Admin();
+        admin.setName(acceptUser.name);
+        admin.setEmail(acceptUser.email);
+        admin.setNum(acceptUser.num);
+        admin.setUsername(acceptUser.username);
+        admin.setPassword(acceptUser.password);
+        admin.setType("admin");
 
-          DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
 
-          DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
-              @Override
-              public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                  Alert("Success","Passenger authorized","OK");
-              }
-          };
-          reff.child("admin").child(acceptUser.username).setValue(admin, completionListener);
-          reff.child("admin_pending").child("Administrator").child(acceptUser.username).removeValue();
-          list.remove(index);
-          adapter.notifyDataSetChanged();
+        DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                Alert("Success", "Passenger authorized", "OK");
+            }
+        };
+        reff.child("admin").child(acceptUser.username).setValue(admin, completionListener);
+        reff.child("admin_pending").child("Administrator").child(acceptUser.username).removeValue();
+        list.remove(index);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onDeclineClick(User declineUser,int index) {
+    public void onDeclineClick(User declineUser, int index) {
         new MaterialAlertDialogBuilder(ConfirmAdminActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to reject "+declineUser.name)
+                .setMessage("Are you sure you want to reject " + declineUser.name)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -169,6 +165,6 @@ public class ConfirmAdminActivity extends AppCompatActivity implements UserAdmin
 
 
                     }
-                }) .show();
+                }).show();
     }
 }

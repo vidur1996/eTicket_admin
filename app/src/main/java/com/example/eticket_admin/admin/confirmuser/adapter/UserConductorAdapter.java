@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdapter.ViewHolder> {
 
-    //  private User[] userSet;
-    private ArrayList<User> userset;
+    private final ArrayList<User> userset;
     onClickConductorAdapter callback;
 
     public UserConductorAdapter(ArrayList<User> arrayList) {
@@ -31,6 +30,7 @@ public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdap
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
+
     public void onBindViewHolder(ViewHolder holder, int position) {
         final User myListData = userset.get(position);
         holder.tv_name.setText(myListData.getName());
@@ -39,13 +39,13 @@ public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdap
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onAcceptClick(myListData,position);
+                callback.onAcceptClick(myListData, position);
             }
         });
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onDeclineClick(myListData,position);
+                callback.onDeclineClick(myListData, position);
             }
         });
 
@@ -55,6 +55,17 @@ public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdap
     @Override
     public int getItemCount() {
         return userset.size();
+    }
+
+    public void onClickConductorAdapter(onClickConductorAdapter callback) {
+        this.callback = callback;
+    }
+
+    public interface onClickConductorAdapter {
+        void onAcceptClick(User acceptUser, int index);
+
+        void onDeclineClick(User declineUser, int index);
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,13 +84,5 @@ public class UserConductorAdapter extends RecyclerView.Adapter<UserConductorAdap
             cancel = (ImageView) itemView.findViewById(R.id.decline_confirm);
 
         }
-    }
-    public void onClickConductorAdapter(onClickConductorAdapter callback){
-        this.callback = callback;
-    }
-    public interface onClickConductorAdapter {
-        public void onAcceptClick(User acceptUser,int index);
-        public void onDeclineClick(User declineUser,int index);
-
     }
 }

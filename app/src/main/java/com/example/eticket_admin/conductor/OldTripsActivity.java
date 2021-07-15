@@ -1,5 +1,9 @@
-
 package com.example.eticket_admin.conductor;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,16 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.confirmuser.adapter.UserAdminAdapter;
 import com.example.eticket_admin.conductor.adapter.TripsAdapter;
 import com.example.eticket_admin.data.Trip;
-import com.example.eticket_admin.data.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +26,7 @@ import java.util.ArrayList;
 
 public class OldTripsActivity extends AppCompatActivity implements TripsAdapter.onClickTripsAdapter {
     DatabaseReference databaseReference;
-    String conname = "errorr",busname = "error";
+    String conname = "errorr", busname = "error";
     ArrayList<Trip> list = new ArrayList<Trip>();
     TripsAdapter adapter;
     SharedPreferences profilePreferences;
@@ -40,20 +37,18 @@ public class OldTripsActivity extends AppCompatActivity implements TripsAdapter.
         setContentView(R.layout.activity_oldt_trips);
 
         profilePreferences = getSharedPreferences("CONDUCTOR_PROFILE", Context.MODE_PRIVATE);
-        conname = profilePreferences.getString("CONNAME","");
-        busname = profilePreferences.getString("BUSID","");
+        conname = profilePreferences.getString("CONNAME", "");
+        busname = profilePreferences.getString("BUSID", "");
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("bus").child(busname).child("trip");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                if(snapshot.exists())
-                {
-                    Trip value= snapshot.getValue(Trip.class);
+                if (snapshot.exists()) {
+                    Trip value = snapshot.getValue(Trip.class);
                     list.add(value);
                     adapter.notifyDataSetChanged();
-                }
-                else{
+                } else {
 
 
                 }
@@ -83,8 +78,6 @@ public class OldTripsActivity extends AppCompatActivity implements TripsAdapter.
         });
 
 
-
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_trips);
         adapter = new TripsAdapter(list);
         recyclerView.setHasFixedSize(true);
@@ -97,7 +90,7 @@ public class OldTripsActivity extends AppCompatActivity implements TripsAdapter.
     @Override
     public void onAcceptClick(String tripID) {
         Intent i2 = new Intent(getApplicationContext(), PassengerListAcitivty.class);
-        i2.putExtra("trip_id",tripID);
+        i2.putExtra("trip_id", tripID);
         startActivity(i2);
 
     }

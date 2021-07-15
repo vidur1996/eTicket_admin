@@ -1,11 +1,11 @@
 package com.example.eticket_admin.admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.admin.confirmuser.ConfirmAdminActivity;
@@ -23,10 +23,10 @@ public class adduser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adduser);
-        addPaassenger = (Button)findViewById(R.id.passenger_btn);
-        addTopup = (Button)findViewById(R.id.topup_btn);
-        addAdmin = (Button)findViewById(R.id.admin_btn);
-        addConductor = (Button)findViewById(R.id.conductor_btn);
+        addPaassenger = (Button) findViewById(R.id.passenger_btn);
+        addTopup = (Button) findViewById(R.id.topup_btn);
+        addAdmin = (Button) findViewById(R.id.admin_btn);
+        addConductor = (Button) findViewById(R.id.conductor_btn);
 
         addPaassenger.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,14 +1,14 @@
 package com.example.eticket_admin.admin.confirmuser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
 
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
@@ -26,11 +26,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class ConfirmConductorActivity extends AppCompatActivity implements UserConductorAdapter.onClickConductorAdapter{
+public class ConfirmConductorActivity extends AppCompatActivity implements UserConductorAdapter.onClickConductorAdapter {
     DatabaseReference databaseReference;
     ArrayList<User> list = new ArrayList<User>();
     UserConductorAdapter adapter2;
     RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +41,11 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                if(snapshot.exists())
-                {
+                if (snapshot.exists()) {
                     User value2 = snapshot.getValue(User.class);
                     list.add(value2);
                     adapter2.notifyDataSetChanged();
-                }
-                else{
+                } else {
 
                     showAlert();
                 }
@@ -76,6 +75,7 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
 
 
     }
+
     public void showAlert() {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Alert")
@@ -92,15 +92,16 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
 
     }
 
-    public void recycler(){
+    public void recycler() {
         recyclerView = (RecyclerView) findViewById(R.id.rv_confirm_conductor);
-         adapter2 = new UserConductorAdapter(list);
+        adapter2 = new UserConductorAdapter(list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter2);
         adapter2.onClickConductorAdapter(this);
     }
-    public void Alert(String title,String message,String positve_btn) {
+
+    public void Alert(String title, String message, String positve_btn) {
         new MaterialAlertDialogBuilder(ConfirmConductorActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -130,7 +131,7 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
         DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Alert("Success","Passenger authorized","OK");
+                Alert("Success", "Passenger authorized", "OK");
             }
         };
         reff.child("admin").child(acceptUser.username).setValue(admin, completionListener);
@@ -143,7 +144,7 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
     public void onDeclineClick(User declineUser, int index) {
         new MaterialAlertDialogBuilder(ConfirmConductorActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to reject "+declineUser.name)
+                .setMessage("Are you sure you want to reject " + declineUser.name)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -168,6 +169,6 @@ public class ConfirmConductorActivity extends AppCompatActivity implements UserC
 
 
                     }
-                }) .show();
+                }).show();
     }
 }

@@ -8,6 +8,16 @@ public class User {
     public String num;
     public String bus;
 
+    // public User(String name,String username,String email,String password,String num){
+    //   this.name = name;
+    //    this.email = email;
+    //    this.num = num;
+    //    this.password = password;
+    //   this.username = username;
+    // }
+    public User() {
+    }
+
     public String getBus() {
         return bus;
     }
@@ -15,15 +25,6 @@ public class User {
     public void setBus(String bus) {
         this.bus = bus;
     }
-
-    // public User(String name,String username,String email,String password,String num){
-     //   this.name = name;
-    //    this.email = email;
-    //    this.num = num;
-    //    this.password = password;
-     //   this.username = username;
-   // }
-   public User(){}
 
     public String getName() {
         return name;

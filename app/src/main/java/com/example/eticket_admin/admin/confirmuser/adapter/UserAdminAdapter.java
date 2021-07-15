@@ -16,9 +16,8 @@ import java.util.ArrayList;
 
 public class UserAdminAdapter extends RecyclerView.Adapter<UserAdminAdapter.ViewHolder> {
 
-    //  private User[] userSet;
-    private ArrayList<User> userset;
     onClickAdminAdapter callback;
+    private final ArrayList<User> userset;
 
     public UserAdminAdapter(ArrayList<User> arrayList) {
         //this.userSet = userSet;
@@ -31,6 +30,7 @@ public class UserAdminAdapter extends RecyclerView.Adapter<UserAdminAdapter.View
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
+
     public void onBindViewHolder(ViewHolder holder, int position) {
         final User myListData = userset.get(position);
         holder.tv_name.setText(myListData.getName());
@@ -40,13 +40,13 @@ public class UserAdminAdapter extends RecyclerView.Adapter<UserAdminAdapter.View
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onAcceptClick(myListData,position);
+                callback.onAcceptClick(myListData, position);
             }
         });
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onDeclineClick(myListData,position);
+                callback.onDeclineClick(myListData, position);
             }
         });
 
@@ -57,6 +57,17 @@ public class UserAdminAdapter extends RecyclerView.Adapter<UserAdminAdapter.View
     @Override
     public int getItemCount() {
         return userset.size();
+    }
+
+    public void onClickAdminAdapter(onClickAdminAdapter callback) {
+        this.callback = callback;
+    }
+
+    public interface onClickAdminAdapter {
+        void onAcceptClick(User acceptUser, int index);
+
+        void onDeclineClick(User declineUser, int index);
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,13 +86,5 @@ public class UserAdminAdapter extends RecyclerView.Adapter<UserAdminAdapter.View
             cancel = (ImageView) itemView.findViewById(R.id.decline_confirm);
 
         }
-    }
-    public void onClickAdminAdapter(onClickAdminAdapter callback){
-        this.callback = callback;
-    }
-    public interface onClickAdminAdapter {
-        public void onAcceptClick(User acceptUser,int index);
-        public void onDeclineClick(User declineUser,int index);
-
     }
 }

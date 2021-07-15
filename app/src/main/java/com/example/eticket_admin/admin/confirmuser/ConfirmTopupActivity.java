@@ -1,5 +1,9 @@
 package com.example.eticket_admin.admin.confirmuser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public class ConfirmTopupActivity extends AppCompatActivity implements UserTopUp
     DatabaseReference databaseReference;
     ArrayList<User> list = new ArrayList<User>();
     UserTopUpAdapter adapter4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,32 +40,40 @@ public class ConfirmTopupActivity extends AppCompatActivity implements UserTopUp
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
 
-                    User value4 = snapshot.getValue(User.class);
-                    list.add(value4);
-                    adapter4.notifyDataSetChanged();
-                if( list.isEmpty())
-                {
+                User value4 = snapshot.getValue(User.class);
+                list.add(value4);
+                adapter4.notifyDataSetChanged();
+                if (list.isEmpty()) {
                     showAlert();
                 }
 
             }
+
             @Override
-            public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) { }
+            public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+            }
+
             @Override
-            public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {}
+            public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+            }
+
             @Override
-            public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {}
+            public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+            }
+
             @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {}
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
         });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_confirm_topup);
-         adapter4 = new UserTopUpAdapter(list);
+        adapter4 = new UserTopUpAdapter(list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter4);
         adapter4.onClickTopUpAdapter(this);
     }
+
     public void showAlert() {
         new MaterialAlertDialogBuilder(ConfirmTopupActivity.this)
                 .setTitle("Alert")
@@ -80,7 +89,8 @@ public class ConfirmTopupActivity extends AppCompatActivity implements UserTopUp
                 }).show();
 
     }
-    public void Alert(String title,String message,String positve_btn) {
+
+    public void Alert(String title, String message, String positve_btn) {
         new MaterialAlertDialogBuilder(ConfirmTopupActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -109,7 +119,7 @@ public class ConfirmTopupActivity extends AppCompatActivity implements UserTopUp
         DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Alert("Success","Passenger authorized","OK");
+                Alert("Success", "Passenger authorized", "OK");
             }
         };
         reff.child("admin").child(acceptUser.username).setValue(admin, completionListener);
@@ -122,7 +132,7 @@ public class ConfirmTopupActivity extends AppCompatActivity implements UserTopUp
     public void onDeclineClick(User declineUser, int index) {
         new MaterialAlertDialogBuilder(ConfirmTopupActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to reject "+declineUser.name)
+                .setMessage("Are you sure you want to reject " + declineUser.name)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -147,6 +157,6 @@ public class ConfirmTopupActivity extends AppCompatActivity implements UserTopUp
 
 
                     }
-                }) .show();
+                }).show();
     }
 }

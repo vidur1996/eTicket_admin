@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 public class UserTopUpAdapter extends RecyclerView.Adapter<UserTopUpAdapter.ViewHolder> {
 
-    //  private User[] userSet;
-    private ArrayList<User> userset;
+
     onClickTopUpAdapter callback;
+    private final ArrayList<User> userset;
 
     public UserTopUpAdapter(ArrayList<User> arrayList) {
-        //this.userSet = userSet;
+
         userset = arrayList;
     }
 
@@ -31,6 +31,7 @@ public class UserTopUpAdapter extends RecyclerView.Adapter<UserTopUpAdapter.View
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
+
     public void onBindViewHolder(ViewHolder holder, int position) {
         final User myListData = userset.get(position);
         holder.tv_name.setText(myListData.getName());
@@ -39,13 +40,13 @@ public class UserTopUpAdapter extends RecyclerView.Adapter<UserTopUpAdapter.View
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onAcceptClick(myListData,position);
+                callback.onAcceptClick(myListData, position);
             }
         });
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onDeclineClick(myListData,position);
+                callback.onDeclineClick(myListData, position);
             }
         });
 
@@ -55,6 +56,17 @@ public class UserTopUpAdapter extends RecyclerView.Adapter<UserTopUpAdapter.View
     @Override
     public int getItemCount() {
         return userset.size();
+    }
+
+    public void onClickTopUpAdapter(onClickTopUpAdapter callback) {
+        this.callback = callback;
+    }
+
+    public interface onClickTopUpAdapter {
+        void onAcceptClick(User acceptUser, int index);
+
+        void onDeclineClick(User declineUser, int index);
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,13 +85,5 @@ public class UserTopUpAdapter extends RecyclerView.Adapter<UserTopUpAdapter.View
             cancel = (ImageView) itemView.findViewById(R.id.decline_confirm);
 
         }
-    }
-    public void onClickTopUpAdapter(onClickTopUpAdapter callback){
-        this.callback = callback;
-    }
-    public interface onClickTopUpAdapter {
-        public void onAcceptClick(User acceptUser,int index);
-        public void onDeclineClick(User declineUser,int index);
-
     }
 }

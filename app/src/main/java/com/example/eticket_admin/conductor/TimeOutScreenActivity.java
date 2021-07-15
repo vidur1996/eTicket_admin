@@ -1,18 +1,16 @@
 package com.example.eticket_admin.conductor;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eticket_admin.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,37 +27,35 @@ import java.util.Date;
 import java.util.UUID;
 
 public class TimeOutScreenActivity extends AppCompatActivity {
+    final String MyPREFERENCES = "trip_details";
     TextView text_out;
     Button continuee;
     Date current_time;
-    String price,conname,pass_name,ticketTo,ticketFrom;
-    String bus_name,date1;
-    int bus_bal=0;
-    int trip_bal =0;
-    int pass_co =0;
-    Boolean updateSuccess=false,updatePassengerSuccess=false;
-    String tripid,ticketid;
-    DatabaseReference reffer3,preffer,curentReffer;
+    String price, conname, pass_name, ticketTo, ticketFrom;
+    String bus_name, date1;
+    int bus_bal = 0;
+    int trip_bal = 0;
+    int pass_co = 0;
+    Boolean updateSuccess = false, updatePassengerSuccess = false;
+    String tripid, ticketid;
+    DatabaseReference reffer3, preffer, curentReffer;
     SharedPreferences sharedpreferences;
     SharedPreferences profilePreferences;
-    final String MyPREFERENCES = "trip_details" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeout_screem);
-        continuee=findViewById(R.id.btnSuccess);
-        Log.e("444","timeout SCREEN start");
-        ticketid=genarateId();
+        continuee = findViewById(R.id.btnSuccess);
+        ticketid = genarateId();
         text_out = findViewById(R.id.text_out);
         current_time = Calendar.getInstance().getTime();
-        profilePreferences= getSharedPreferences("CONDUCTOR_PROFILE" , Context.MODE_PRIVATE);
+        profilePreferences = getSharedPreferences("CONDUCTOR_PROFILE", Context.MODE_PRIVATE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        bus_name = profilePreferences.getString("BUSID","error");
+        bus_name = profilePreferences.getString("BUSID", "error");
         tripid = sharedpreferences.getString("trip_id", "");
         Bundle extras = getIntent().getExtras();
-        if (extras != null)
-        {
+        if (extras != null) {
             conname = extras.getString("conname");
             price = extras.getString("price");
             pass_name = extras.getString("pass_name");
@@ -70,17 +66,12 @@ public class TimeOutScreenActivity extends AppCompatActivity {
         final SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa");
         date1 = dateTime.format(new Date());
 
-            setvalue();
+        setvalue();
 
 
-
-
-
-        new CountDownTimer(3000,200)
-        {
+        new CountDownTimer(3000, 200) {
             @Override
-            public void onTick(long millisUntilFinished)
-            {
+            public void onTick(long millisUntilFinished) {
                 continuee.setVisibility(View.INVISIBLE);
                 text_out.setText("ticket processing");
             }
@@ -96,10 +87,9 @@ public class TimeOutScreenActivity extends AppCompatActivity {
         continuee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(updateSuccess && updatePassengerSuccess){
+                if (updateSuccess && updatePassengerSuccess) {
                     Intent i2 = new Intent(getApplicationContext(), CurrentTripMenuActivity.class);
                     startActivity(i2);
-                    Log.e("444","timeout SCREEN end");
                     TimeOutScreenActivity.this.finish();
                 }
             }
@@ -108,13 +98,13 @@ public class TimeOutScreenActivity extends AppCompatActivity {
     }
 
 
-    public void setvalue(){
-       reffer3 = FirebaseDatabase.getInstance().getReference().child("bus").child(bus_name);
+    public void setvalue() {
+        reffer3 = FirebaseDatabase.getInstance().getReference().child("bus").child(bus_name);
 
         reffer3.child("revenue").setValue(ServerValue.increment(Integer.parseInt(price))).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     reffer3.child("trip").child(tripid).child("collection").setValue(ServerValue.increment(Integer.parseInt(price)));
                     reffer3.child("trip").child(tripid).child("passengerCount").setValue(ServerValue.increment(1)).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -126,9 +116,9 @@ public class TimeOutScreenActivity extends AppCompatActivity {
                             reffer3.child("passenger").child(tripid).child(ticketid).child("ticketValue").setValue(price).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         sendPassengerTicket();
-                                        updateSuccess=true;
+                                        updateSuccess = true;
                                     }
 
                                 }
@@ -141,25 +131,25 @@ public class TimeOutScreenActivity extends AppCompatActivity {
         });
     }
 
-    public String genarateId(){
+    public String genarateId() {
         return UUID.randomUUID().toString().toUpperCase().substring(0, 6);
     }
 
-    public void sendPassengerTicket(){
+    public void sendPassengerTicket() {
         preffer = FirebaseDatabase.getInstance().getReference().child("tickets").child(pass_name).child("pastTickets");
         preffer.child(date1).child("ticketNo").setValue(ticketid).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     preffer.child(date1).child("ticketTo").setValue(ticketTo);
                     preffer.child(date1).child("ticketFrom").setValue(ticketFrom);
                     preffer.child(date1).child("busName").setValue(bus_name);
                     preffer.child(date1).child("price").setValue(price).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 currentPassengerTicket();
-                                updatePassengerSuccess=true;
+                                updatePassengerSuccess = true;
                             }
                         }
                     });
@@ -168,20 +158,20 @@ public class TimeOutScreenActivity extends AppCompatActivity {
         });
     }
 
-    public void currentPassengerTicket(){
+    public void currentPassengerTicket() {
         curentReffer = FirebaseDatabase.getInstance().getReference().child("tickets").child(pass_name).child("currentTicket");
         curentReffer.child("ticketNo").setValue(ticketid).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     curentReffer.child("ticketTo").setValue(ticketTo);
                     curentReffer.child("ticketFrom").setValue(ticketFrom);
                     curentReffer.child("busName").setValue(bus_name);
                     curentReffer.child("price").setValue(price).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                updatePassengerSuccess=true;
+                            if (task.isSuccessful()) {
+                                updatePassengerSuccess = true;
                             }
                         }
                     });

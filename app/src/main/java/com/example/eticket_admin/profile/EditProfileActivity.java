@@ -1,23 +1,20 @@
 package com.example.eticket_admin.profile;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.eticket_admin.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.signup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,62 +22,63 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class EditProfileActivity extends AppCompatActivity {
     String uname;
-    String name,email,phone;
+    String name, email, phone;
     Button btn_saveProfile;
     TextView mail_error;
-    Boolean checkEmail=true;
-    EditText et_name,et_email,et_phone;
+    Boolean checkEmail = true;
+    EditText et_name, et_email, et_phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        btn_saveProfile = (Button)findViewById(R.id.btn_edit_save_profile);
-        et_name = (EditText)findViewById(R.id.et_edit_name);
-        et_email = (EditText)findViewById(R.id.et_edit_email);
-        et_phone = (EditText)findViewById(R.id.et_edit_phone);
-        mail_error = (TextView)findViewById(R.id.tv_edit_email_error);
+        btn_saveProfile = (Button) findViewById(R.id.btn_edit_save_profile);
+        et_name = (EditText) findViewById(R.id.et_edit_name);
+        et_email = (EditText) findViewById(R.id.et_edit_email);
+        et_phone = (EditText) findViewById(R.id.et_edit_phone);
+        mail_error = (TextView) findViewById(R.id.tv_edit_email_error);
         Bundle extras = getIntent().getExtras();
-        if (extras != null)
-        {
+        if (extras != null) {
             uname = extras.getString("uname");
             name = extras.getString("name");
-            email= extras.getString("email");
+            email = extras.getString("email");
             phone = extras.getString("phone");
             setdata();
         }
         emailVaildator();
         btn_saveProfile.setOnClickListener(v -> {
-            if (validdata() &&checkEmail){
-                if(savedata()){
+            if (validdata() && checkEmail) {
+                if (savedata()) {
                     showAlert();
                 }
             }
         });
-        
+
     }
 
-    public void setdata(){
+    public void setdata() {
         et_name.setText(name);
         et_email.setText(email);
         et_phone.setText(phone);
     }
 
-    public Boolean validdata(){
-        if(et_name.getText().toString().equals("")){
+    public Boolean validdata() {
+        if (et_name.getText().toString().equals("")) {
             Toast.makeText(this, "name required", Toast.LENGTH_LONG).show();
             return false;
-        }else if (et_phone.getText().toString().equals("")){
+        } else if (et_phone.getText().toString().equals("")) {
             Toast.makeText(this, "phone number required", Toast.LENGTH_LONG).show();
             return false;
-        }else if(et_email.getText().toString().equals("")){
+        } else if (et_email.getText().toString().equals("")) {
             Toast.makeText(this, "email required", Toast.LENGTH_LONG).show();
             return false;
-        }else {
+        } else {
             return true;
         }
 
     }
-    public Boolean savedata(){
+
+    public Boolean savedata() {
         String new_email = et_email.getText().toString().trim();
         String new_name = et_name.getText().toString().trim();
         String new_phone = et_phone.getText().toString().trim();
@@ -101,7 +99,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
 
-    public void emailVaildator(){
+    public void emailVaildator() {
         et_email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -111,11 +109,11 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (et_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
                     mail_error.setText("");
-                    checkEmail=false;
+                    checkEmail = false;
                 } else {
 
                     mail_error.setText("invalid email");
-                    checkEmail=true;
+                    checkEmail = true;
                 }
 
             }
@@ -134,7 +132,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent it = new Intent(getApplicationContext(), ProfileActivity.class);
-                        it.putExtra("uname",uname);
+                        it.putExtra("uname", uname);
                         startActivity(it);
                         finish();
 
@@ -142,8 +140,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 }).show();
 
     }
-
-
 
 
 }

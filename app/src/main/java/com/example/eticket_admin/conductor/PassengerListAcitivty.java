@@ -1,21 +1,18 @@
 package com.example.eticket_admin.conductor;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.conductor.adapter.TicketAdapter;
-import com.example.eticket_admin.conductor.adapter.TripsAdapter;
 import com.example.eticket_admin.data.Ticket;
-import com.example.eticket_admin.data.Trip;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,13 +24,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class PassengerListAcitivty extends AppCompatActivity {
+    final String MyPREFERENCES = "trip_details";
     DatabaseReference databaseReference;
-    String tripid = "errorr",busname = "error";
+    String tripid = "errorr", busname = "error";
     ArrayList<Ticket> list = new ArrayList<Ticket>();
     TicketAdapter adapter;
     SharedPreferences profilePreferences;
     SharedPreferences sharedpreferences;
-    final String MyPREFERENCES = "trip_details" ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +39,21 @@ public class PassengerListAcitivty extends AppCompatActivity {
         profilePreferences = getSharedPreferences("CONDUCTOR_PROFILE", Context.MODE_PRIVATE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         tripid = sharedpreferences.getString("trip_id", "");
-        busname = profilePreferences.getString("BUSID","");
+        busname = profilePreferences.getString("BUSID", "");
         Bundle extras = getIntent().getExtras();
-        if (extras != null)
-        {
+        if (extras != null) {
 
         }
         databaseReference = FirebaseDatabase.getInstance().getReference().child("bus").child(busname).child("passenger").child(tripid);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                if(snapshot.exists())
-                {
-                    Ticket value= snapshot.getValue(Ticket.class);
+                if (snapshot.exists()) {
+                    Ticket value = snapshot.getValue(Ticket.class);
 
                     list.add(value);
-                  adapter.notifyDataSetChanged();
-                }
-                else{
+                    adapter.notifyDataSetChanged();
+                } else {
 
 
                 }

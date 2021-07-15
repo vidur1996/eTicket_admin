@@ -1,8 +1,5 @@
 package com.example.eticket_admin.conductor;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -26,17 +26,18 @@ import com.karumi.dexter.listener.single.PermissionListener;
 public class ScanTicketActivity extends AppCompatActivity {
     CodeScanner codeScanner;
     CodeScannerView scannView;
-    String conname,bus_name;
+    String conname, bus_name;
     SharedPreferences profilePreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_ticket);
         scannView = findViewById(R.id.scannerView);
-        codeScanner = new CodeScanner(this,scannView);
+        codeScanner = new CodeScanner(this, scannView);
         profilePreferences = getSharedPreferences("CONDUCTOR_PROFILE", Context.MODE_PRIVATE);
-        conname = profilePreferences.getString("CONNAME","");
-        bus_name = profilePreferences.getString("BUSID","");
+        conname = profilePreferences.getString("CONNAME", "");
+        bus_name = profilePreferences.getString("BUSID", "");
 
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
@@ -45,12 +46,12 @@ public class ScanTicketActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //  resultData.setText(result.getText());
+
                         String data1 = result.getText();
                         Intent intent1 = new Intent(getApplicationContext(), ConfirmTicketActivity.class);
-                        intent1.putExtra("scandata",data1);
-                        intent1.putExtra("conname",conname);
-                        intent1.putExtra("bus_name",bus_name);
+                        intent1.putExtra("scandata", data1);
+                        intent1.putExtra("conname", conname);
+                        intent1.putExtra("bus_name", bus_name);
                         startActivity(intent1);
                         ScanTicketActivity.this.finish();
                     }
@@ -93,7 +94,6 @@ public class ScanTicketActivity extends AppCompatActivity {
             }
         }).check();
     }
-
 
 
 }

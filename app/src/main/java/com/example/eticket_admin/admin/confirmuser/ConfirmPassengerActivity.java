@@ -1,20 +1,18 @@
 package com.example.eticket_admin.admin.confirmuser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.confirmuser.adapter.UserConductorAdapter;
 import com.example.eticket_admin.admin.confirmuser.adapter.UserPassengerAdapter;
-import com.example.eticket_admin.data.Admin;
 import com.example.eticket_admin.data.Member;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
@@ -31,6 +29,7 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
     DatabaseReference databaseReference;
     ArrayList<Member> list = new ArrayList<Member>();
     UserPassengerAdapter adapter3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +39,11 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-               if(snapshot.exists())
-                {
+                if (snapshot.exists()) {
                     Member value3 = snapshot.getValue(Member.class);
                     list.add(value3);
                     adapter3.notifyDataSetChanged();
-                }
-                else{
+                } else {
 
                     showAlert();
                 }
@@ -75,8 +72,6 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
         });
 
 
-
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_confirm_user);
         adapter3 = new UserPassengerAdapter(list);
         recyclerView.setHasFixedSize(true);
@@ -101,7 +96,8 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
                 }).show();
 
     }
-    public void Alert(String title,String message,String positve_btn) {
+
+    public void Alert(String title, String message, String positve_btn) {
         new MaterialAlertDialogBuilder(ConfirmPassengerActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -131,7 +127,7 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
         DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Alert("Success","Passenger authorized","OK");
+                Alert("Success", "Passenger authorized", "OK");
             }
         };
         reff.child("member").child(acceptUser.getUsername()).setValue(mem, completionListener);
@@ -144,7 +140,7 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
     public void onDeclineClick(Member declineUser, int index) {
         new MaterialAlertDialogBuilder(ConfirmPassengerActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to reject "+declineUser.getName())
+                .setMessage("Are you sure you want to reject " + declineUser.getName())
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -169,6 +165,6 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
 
 
                     }
-                }) .show();
+                }).show();
     }
 }

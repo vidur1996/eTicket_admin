@@ -1,12 +1,10 @@
 package com.example.eticket_admin;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,8 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signup extends AppCompatActivity {
     EditText password_edit, editText_email, editText_name, editText_phone, editText_username;
-    EditText confirm_password_edit,editText_busId;
-    TextView password_error, email_error,tv_bus_label;
+    EditText confirm_password_edit, editText_busId;
+    TextView password_error, email_error, tv_bus_label;
     Button signup;
     String password;
     Spinner spinner_userType;
@@ -46,7 +44,7 @@ public class signup extends AppCompatActivity {
         editText_email = findViewById(R.id.editText_email);
         email_error = findViewById(R.id.text_email_error);
         editText_name = findViewById(R.id.editText_name);
-        editText_busId  = findViewById(R.id.editText_bus_id);
+        editText_busId = findViewById(R.id.editText_bus_id);
         editText_phone = findViewById(R.id.editText_phone);
         editText_username = findViewById(R.id.editText_username);
         tv_bus_label = findViewById(R.id.tv_bus_label);
@@ -59,10 +57,10 @@ public class signup extends AppCompatActivity {
         spinner_userType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (String.valueOf(spinner_userType.getSelectedItemId())=="1"){
+                if (String.valueOf(spinner_userType.getSelectedItemId()) == "1") {
                     editText_busId.setVisibility(View.VISIBLE);
                     tv_bus_label.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     editText_busId.setVisibility(View.GONE);
                     tv_bus_label.setVisibility(View.GONE);
                 }
@@ -152,9 +150,9 @@ public class signup extends AppCompatActivity {
         admin.setNum(editText_phone.getText().toString().trim());
         admin.setUsername(editText_username.getText().toString().trim());
         admin.setPassword(password);
-        if(!editText_busId.getText().toString().trim().equals("")){
+        if (!editText_busId.getText().toString().trim().equals("")) {
             admin.setBus(editText_busId.getText().toString().trim());
-        }else {
+        } else {
             admin.setBus("0");
         }
 
@@ -190,10 +188,10 @@ public class signup extends AppCompatActivity {
             Toast.makeText(signup.this, "phone number required", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(utype=="Conductor" && editText_busId.getText().toString().equals("")){
+        if (utype == "Conductor" && editText_busId.getText().toString().equals("")) {
             Toast.makeText(signup.this, "bus id required", Toast.LENGTH_LONG).show();
             return false;
-        }else {
+        } else {
             return true;
         }
 

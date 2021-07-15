@@ -5,26 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.data.Admin;
-import com.example.eticket_admin.data.Member;
-import com.example.eticket_admin.data.User;
 
 import java.util.ArrayList;
 
 public class RemoveTopupAdapter extends RecyclerView.Adapter<RemoveTopupAdapter.ViewHolder> {
 
-    //  private User[] userSet;
-    private ArrayList<Admin> userset;
+
     onClickTopupRemoveAdapter callback;
+    private final ArrayList<Admin> userset;
 
     public RemoveTopupAdapter(ArrayList<Admin> arrayList) {
-        //this.userSet = userSet;
+
         userset = arrayList;
     }
 
@@ -34,6 +31,7 @@ public class RemoveTopupAdapter extends RecyclerView.Adapter<RemoveTopupAdapter.
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
+
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Admin myListData = userset.get(position);
         holder.tv_name.setText(myListData.getName());
@@ -42,11 +40,11 @@ public class RemoveTopupAdapter extends RecyclerView.Adapter<RemoveTopupAdapter.
         holder.delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onDeleteClick(myListData,position);
+                callback.onDeleteClick(myListData, position);
             }
         });
-        if(!myListData.getType().equals("topup")){
-            holder.itemView.setLayoutParams( new RecyclerView.LayoutParams(0,0));
+        if (!myListData.getType().equals("topup")) {
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
         }
 
     }
@@ -55,6 +53,16 @@ public class RemoveTopupAdapter extends RecyclerView.Adapter<RemoveTopupAdapter.
     @Override
     public int getItemCount() {
         return userset.size();
+    }
+
+    public void onClickTopupRemoveAdapter(onClickTopupRemoveAdapter callback) {
+        this.callback = callback;
+    }
+
+    public interface onClickTopupRemoveAdapter {
+        void onDeleteClick(Admin deleteUser, int index);
+
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,17 +76,9 @@ public class RemoveTopupAdapter extends RecyclerView.Adapter<RemoveTopupAdapter.
             tv_name = (TextView) itemView.findViewById(R.id.tv_name_delete);
             tv_email = (TextView) itemView.findViewById(R.id.tv_email_delete);
             tv_userName = (TextView) itemView.findViewById(R.id.tv_username_delete);
-            delete_btn =(Button)itemView.findViewById(R.id.btn_delete_user);
+            delete_btn = (Button) itemView.findViewById(R.id.btn_delete_user);
 
 
         }
-    }
-    public void onClickTopupRemoveAdapter(onClickTopupRemoveAdapter callback){
-        this.callback = callback;
-    }
-    public interface onClickTopupRemoveAdapter {
-        public void onDeleteClick(Admin deleteUser,int index);
-
-
     }
 }

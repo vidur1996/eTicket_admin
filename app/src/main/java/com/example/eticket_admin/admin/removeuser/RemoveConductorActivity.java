@@ -1,22 +1,19 @@
 package com.example.eticket_admin.admin.removeuser;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.confirmuser.ConfirmConductorActivity;
-import com.example.eticket_admin.admin.confirmuser.adapter.UserConductorAdapter;
 import com.example.eticket_admin.admin.removeuser.adapter.RemoveConductorAdapter;
 import com.example.eticket_admin.data.Admin;
-import com.example.eticket_admin.data.User;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +30,7 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
     ArrayList<Admin> list = new ArrayList<Admin>();
     RemoveConductorAdapter adapter2;
     RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,16 +40,14 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-                if(snapshot.exists())
-                {
+                if (snapshot.exists()) {
                     Admin value2 = snapshot.getValue(Admin.class);
-                   // if(value2.getType().toString()=="conductor"){
-                        list.add(value2);
-                        adapter2.notifyDataSetChanged();
-                  //  }
 
-                }
-                else{
+                    list.add(value2);
+                    adapter2.notifyDataSetChanged();
+
+
+                } else {
 
                     showAlert();
                 }
@@ -81,6 +77,7 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
 
 
     }
+
     public void showAlert() {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Alert")
@@ -97,22 +94,21 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
 
     }
 
-    public void recycler(){
+    public void recycler() {
         recyclerView = (RecyclerView) findViewById(R.id.rv_remove_conductor);
         adapter2 = new RemoveConductorAdapter(list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter2);
-        adapter2.onClickConductorRemoveAdapter(this );
+        adapter2.onClickConductorRemoveAdapter(this);
     }
-
 
 
     @Override
     public void onDeleteClick(Admin deleteUser, int index) {
         new MaterialAlertDialogBuilder(RemoveConductorActivity.this)
                 .setTitle("Alert")
-                .setMessage("Are you sure you want to remove  "+deleteUser.getName()+" from the database")
+                .setMessage("Are you sure you want to remove  " + deleteUser.getName() + " from the database")
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -137,6 +133,6 @@ public class RemoveConductorActivity extends AppCompatActivity implements Remove
 
 
                     }
-                }) .show();
+                }).show();
     }
 }

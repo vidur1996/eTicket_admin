@@ -16,70 +16,74 @@ import java.util.ArrayList;
 
 public class UserPassengerAdapter extends RecyclerView.Adapter<UserPassengerAdapter.ViewHolder> {
 
-  //  private User[] userSet;
-    private ArrayList<Member> userset;
+
     onClickPassengerAdapter callback;
+    private final ArrayList<Member> userset;
 
     public UserPassengerAdapter(ArrayList<Member> arrayList) {
-        //this.userSet = userSet;
+
         userset = arrayList;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-            View listItem = layoutInflater.inflate(R.layout.item_confirm_user, parent, false);
-            ViewHolder viewHolder = new ViewHolder(listItem);
-            return viewHolder;
-        }
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            final Member myListData = userset.get(position);
-            holder.tv_name.setText(myListData.getName());
-            holder.tv_email.setText(myListData.getEmail());
-            holder.tv_userName.setText(myListData.getUsername());
-            holder.accept.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    callback.onAcceptClick(myListData,position);
-                }
-            });
-            holder.cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    callback.onDeclineClick(myListData,position);
-                }
-            });
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem = layoutInflater.inflate(R.layout.item_confirm_user, parent, false);
+        ViewHolder viewHolder = new ViewHolder(listItem);
+        return viewHolder;
+    }
 
-        }
-
-
-        @Override
-        public int getItemCount() {
-            return userset.size();
-        }
-
-        public static class ViewHolder extends RecyclerView.ViewHolder {
-            TextView tv_name;
-            TextView tv_email;
-            TextView tv_userName;
-            ImageView cancel;
-            ImageView accept;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                tv_name = (TextView) itemView.findViewById(R.id.tv_name_confirm);
-                tv_email = (TextView) itemView.findViewById(R.id.tv_email_confirm);
-                tv_userName = (TextView) itemView.findViewById(R.id.tv_username_confirm);
-                accept = (ImageView) itemView.findViewById(R.id.accept_confirm);
-                cancel = (ImageView) itemView.findViewById(R.id.decline_confirm);
-
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        final Member myListData = userset.get(position);
+        holder.tv_name.setText(myListData.getName());
+        holder.tv_email.setText(myListData.getEmail());
+        holder.tv_userName.setText(myListData.getUsername());
+        holder.accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onAcceptClick(myListData, position);
             }
-        }
-    public void onClickPassengerAdapter(onClickPassengerAdapter callback){
+        });
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onDeclineClick(myListData, position);
+            }
+        });
+
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return userset.size();
+    }
+
+    public void onClickPassengerAdapter(onClickPassengerAdapter callback) {
         this.callback = callback;
     }
+
     public interface onClickPassengerAdapter {
-        public void onAcceptClick(Member acceptUser,int index);
-        public void onDeclineClick(Member declineUser,int index);
+        void onAcceptClick(Member acceptUser, int index);
+
+        void onDeclineClick(Member declineUser, int index);
 
     }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_name;
+        TextView tv_email;
+        TextView tv_userName;
+        ImageView cancel;
+        ImageView accept;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tv_name = (TextView) itemView.findViewById(R.id.tv_name_confirm);
+            tv_email = (TextView) itemView.findViewById(R.id.tv_email_confirm);
+            tv_userName = (TextView) itemView.findViewById(R.id.tv_username_confirm);
+            accept = (ImageView) itemView.findViewById(R.id.accept_confirm);
+            cancel = (ImageView) itemView.findViewById(R.id.decline_confirm);
+
+        }
     }
+}
