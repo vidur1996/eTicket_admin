@@ -86,8 +86,8 @@ public class NewTripCreateActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     refferbus.child(date1).child("toTrip").setValue(trip_to.getText().toString().trim());
                     refferbus.child(date1).child("fromTrip").setValue(trip_from.getText().toString().trim());
-                    refferbus.child(date1).child("collection").setValue("0");
-                    refferbus.child(date1).child("passengerCount").setValue("0");
+                    refferbus.child(date1).child("collection").setValue(0);
+                    refferbus.child(date1).child("passengerCount").setValue(0);
                     refferbus.child(date1).child("endTime").setValue("---");
                     refferbus.child(date1).child("startTime").setValue(date1).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

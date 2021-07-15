@@ -37,7 +37,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.ticket_from.setText(myListData.getTicketFrom());
         holder.ticket_to.setText(myListData.getTicketTo());
         holder.ticket_user.setText(myListData.getUserName());
-        holder.ticket_value.setText(myListData.getTicketValue());
+        holder.ticket_value.setText("Rs."+myListData.getTicketValue());
 
     }
 

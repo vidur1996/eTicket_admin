@@ -62,7 +62,7 @@ public class TripMenuActivity extends AppCompatActivity {
                 startActivity(i1);
                 Log.e("222","trip SCREEN end");
                 TripMenuActivity.this.finish();
-                //todo
+
             }
         });
 

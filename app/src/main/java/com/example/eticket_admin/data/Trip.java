@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Trip {
     String conductorName;
-    String collection;
+    Long collection;
     String endTime;
     String startTime;
     String fromTrip;
     String toTrip;
-    String passengerCount;
+    Long passengerCount;
 
 
     public Trip() {
@@ -18,23 +18,21 @@ public class Trip {
     }
 
 
-
-    public String getCollection() {
+    public Long getCollection() {
         return collection;
     }
 
-    public void setCollection(String collection) {
+    public void setCollection(Long collection) {
         this.collection = collection;
     }
 
-    public String getPassengerCount() {
+    public Long getPassengerCount() {
         return passengerCount;
     }
 
-    public void setPassengerCount(String passengerCount) {
+    public void setPassengerCount(Long passengerCount) {
         this.passengerCount = passengerCount;
     }
-
 
     public String getEndTime() {
         return endTime;

@@ -24,10 +24,10 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 
 public class ConductorMainActivity extends AppCompatActivity {
-Button logout,tripDetails,profile,revenueBus;
-TextView username;
-String conname,busname ;
-SharedPreferences sharedpreferences;
+    Button logout,tripDetails,profile,revenueBus;
+    TextView username;
+    String conname,busname ;
+    SharedPreferences sharedpreferences;
     DatabaseReference reff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
