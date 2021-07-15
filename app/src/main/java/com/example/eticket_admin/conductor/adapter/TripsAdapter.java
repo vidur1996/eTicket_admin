@@ -44,6 +44,12 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
         holder.tv_collection.setText(myListData.getCollection());
         holder.tv_passsenger_count.setText(myListData.getPassengerCount());
         holder.tv_conductor.setText(myListData.getConductorName());
+        holder.btn_passenger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onAcceptClick(myListData.getStartTime());
+            }
+        });
 
 
     }
@@ -73,11 +79,11 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
 
         }
     }
-    public void onClickAdminAdapter(onClickTripsAdapter callback){
+    public void onClickTripsAdapter(onClickTripsAdapter callback){
         this.callback = callback;
     }
     public interface onClickTripsAdapter {
-        public void onAcceptClick(User acceptUser,int index);
+        public void onAcceptClick(String tripID);
 
 
     }

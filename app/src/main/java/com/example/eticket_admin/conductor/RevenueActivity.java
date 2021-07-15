@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.eticket_admin.R;
 
-public class passenger_list extends AppCompatActivity {
+public class RevenueActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger_list);
+        setContentView(R.layout.activity_revenue);
     }
 }

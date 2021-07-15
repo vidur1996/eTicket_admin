@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class new_trip_create extends AppCompatActivity {
+public class NewTripCreateActivity extends AppCompatActivity {
 
     EditText con_name,trip_to,trip_from,bus_name,start_time;
     String conname = "errorr",busname = "error",date1;
@@ -80,11 +80,12 @@ public class new_trip_create extends AppCompatActivity {
                         refferbus.child(date1).child("fromTrip").setValue(trip_from.getText().toString().trim());
                         refferbus.child(date1).child("collection").setValue("0");
                         refferbus.child(date1).child("passengerCount").setValue("0");
+                        refferbus.child(date1).child("endTime").setValue("---");
                         refferbus.child(date1).child("startTime").setValue(date1).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(new_trip_create.this,"added succesfully",Toast.LENGTH_LONG);
-                                Intent i3 = new Intent(getApplicationContext(), trip_setting.class);
+                                Toast.makeText(NewTripCreateActivity.this,"added succesfully",Toast.LENGTH_LONG);
+                                Intent i3 = new Intent(getApplicationContext(), TripMenuActivity.class);
                                 i3.putExtra("conname",conname);
 
 
@@ -111,10 +112,10 @@ public class new_trip_create extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i2 = new Intent(getApplicationContext(), menu_conductor.class);
+                Intent i2 = new Intent(getApplicationContext(), CurrentTripMenuActivity.class);
                 i2.putExtra("conname",conname);
                 startActivity(i2);
-                new_trip_create.this.finish();
+                NewTripCreateActivity.this.finish();
             }
         });
 

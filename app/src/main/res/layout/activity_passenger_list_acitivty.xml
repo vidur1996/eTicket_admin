@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".conductor.TimeOutScreenActivity">
-
-    <TextView
-        android:id="@+id/text_out"
-        android:layout_width="272dp"
-        android:layout_height="196dp"
-        android:gravity="center"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+    tools:context=".conductor.PassengerListAcitivty">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_passengers"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:paddingBottom="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

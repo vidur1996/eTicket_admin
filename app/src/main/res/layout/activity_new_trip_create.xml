@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFBB69"
-    tools:context=".conductor.new_trip_create">
+    tools:context=".conductor.NewTripCreateActivity">
 
     <TextView
         android:id="@+id/NEW11"

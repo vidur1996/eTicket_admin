@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class trip_details extends AppCompatActivity {
+public class CurrentTripDetailActivity extends AppCompatActivity {
 Button exit,pass_list;
 EditText revenue,trip_from1,trip_to1,start_time1,pass_no;
     String conname = "errorr",busname = "error",tripid ="error";
@@ -56,15 +56,14 @@ EditText revenue,trip_from1,trip_to1,start_time1,pass_no;
 
                 if (snapshot.exists() ){
                 revenue.setText(snapshot.child("collection").getValue().toString());
-
-                trip_from1.setText(snapshot.child("from").getValue().toString());
-                trip_to1.setText(snapshot.child("to").getValue().toString());
-                start_time1.setText(snapshot.child("start time").getValue().toString());
-                pass_no.setText(snapshot.child("passenger_count").getValue().toString());
+                trip_from1.setText(snapshot.child("fromTrip").getValue().toString());
+                trip_to1.setText(snapshot.child("toTrip").getValue().toString());
+                start_time1.setText(snapshot.child("startTime").getValue().toString());
+                pass_no.setText(snapshot.child("passengerCount").getValue().toString());
                 }
                 else
                 {
-                    Toast.makeText(trip_details.this,"database error",Toast.LENGTH_SHORT);
+                    Toast.makeText(CurrentTripDetailActivity.this,"database error",Toast.LENGTH_SHORT);
                 }
             }
 
@@ -75,21 +74,25 @@ EditText revenue,trip_from1,trip_to1,start_time1,pass_no;
         });
 
 
-
-
-
-
-
+        pass_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent(getApplicationContext(), PassengerListAcitivty.class);
+                i2.putExtra("trip_id",tripid);
+                startActivity(i2);
+                CurrentTripDetailActivity.this.finish();
+            }
+        });
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i2 = new Intent(getApplicationContext(), menu_conductor.class);
+                Intent i2 = new Intent(getApplicationContext(), CurrentTripMenuActivity.class);
                 i2.putExtra("conname",conname);
                 i2.putExtra("bus_name",busname);
                 i2.putExtra("trip_id",tripid);
                 startActivity(i2);
-                trip_details.this.finish();
+                CurrentTripDetailActivity.this.finish();
             }
         });
 

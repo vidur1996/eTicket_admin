@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".conductor.scan_ticket">
+    tools:context=".conductor.ScanTicketActivity">
 
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scannerView"

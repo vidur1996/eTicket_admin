@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.eticket_admin.admin.main_menu;
 import com.example.eticket_admin.conductor.ConductorMainActivity;
-import com.example.eticket_admin.conductor.trip_setting;
 import com.example.eticket_admin.topup.menu_topup;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

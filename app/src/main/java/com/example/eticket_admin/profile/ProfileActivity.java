@@ -5,17 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
-import com.example.eticket_admin.admin.main_menu;
-import com.example.eticket_admin.conductor.trip_setting;
-import com.example.eticket_admin.saveuser;
-import com.example.eticket_admin.topup.menu_topup;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

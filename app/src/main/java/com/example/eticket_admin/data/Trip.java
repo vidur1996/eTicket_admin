@@ -1,5 +1,8 @@
 package com.example.eticket_admin.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trip {
     String conductorName;
     String collection;
@@ -7,11 +10,14 @@ public class Trip {
     String startTime;
     String fromTrip;
     String toTrip;
-   String passengerCount;
+    String passengerCount;
+
 
     public Trip() {
 
     }
+
+
 
     public String getCollection() {
         return collection;

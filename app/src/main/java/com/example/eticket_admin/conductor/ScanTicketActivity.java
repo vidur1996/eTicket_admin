@@ -21,7 +21,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-public class scan_ticket extends AppCompatActivity {
+public class ScanTicketActivity extends AppCompatActivity {
     CodeScanner codeScanner;
     CodeScannerView scannView;
     String conname,bus_name;
@@ -50,12 +50,12 @@ public class scan_ticket extends AppCompatActivity {
                     public void run() {
                         //  resultData.setText(result.getText());
                         String data1 = result.getText();
-                        Intent intent1 = new Intent(getApplicationContext(), confirm_ticket.class);
+                        Intent intent1 = new Intent(getApplicationContext(), ConfirmTicketActivity.class);
                         intent1.putExtra("scandata",data1);
                         intent1.putExtra("conname",conname);
                         intent1.putExtra("bus_name",bus_name);
                         startActivity(intent1);
-                        scan_ticket.this.finish();
+                        ScanTicketActivity.this.finish();
                     }
                 });
 
@@ -86,7 +86,7 @@ public class scan_ticket extends AppCompatActivity {
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse response) {
-                Toast.makeText(scan_ticket.this, "Camera Permission is Required.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScanTicketActivity.this, "Camera Permission is Required.", Toast.LENGTH_SHORT).show();
             }
 
             @Override

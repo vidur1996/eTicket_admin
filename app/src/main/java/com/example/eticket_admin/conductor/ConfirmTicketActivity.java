@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class confirm_ticket extends AppCompatActivity {
+public class ConfirmTicketActivity extends AppCompatActivity {
 String scandata,conname,bus_name;
 
 String to="eror";
@@ -74,7 +74,7 @@ EditText to_txt,from_txt,price_txt,user_txt;
                     else
                     {
 
-                        Toast.makeText(confirm_ticket.this,"database error",Toast.LENGTH_SHORT);
+                        Toast.makeText(ConfirmTicketActivity.this,"database error",Toast.LENGTH_SHORT);
                     }
                 }
 
@@ -93,13 +93,15 @@ EditText to_txt,from_txt,price_txt,user_txt;
                         reffer1.child("balance").setValue(customer_bal).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(confirm_ticket.this,"transaction succesful",Toast.LENGTH_SHORT);
+                                Toast.makeText(ConfirmTicketActivity.this,"transaction succesful",Toast.LENGTH_SHORT);
 
-                                Intent i2 = new Intent(getApplicationContext(), timeout_screem.class);
+                                Intent i2 = new Intent(getApplicationContext(), TimeOutScreenActivity.class);
                                 i2.putExtra("conname",conname);
                                 i2.putExtra("price",price);
                                 i2.putExtra("bus_name",bus_name);
                                 i2.putExtra("pass_name",cos_user);
+                                i2.putExtra("pass_to",to);
+                                i2.putExtra("pass_from",from);
                                 startActivity(i2);
                                 finish();
                             }

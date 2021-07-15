@@ -1,21 +1,34 @@
 package com.example.eticket_admin.conductor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eticket_admin.MainActivity;
 import com.example.eticket_admin.R;
 import com.example.eticket_admin.profile.ProfileActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ConductorMainActivity extends AppCompatActivity {
 Button logout,tripDetails,profile,changeBus;
 TextView username;
-String conname;
+String conname,busname ;
+SharedPreferences sharedpreferences;
+    DatabaseReference reff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +40,14 @@ String conname;
         tripDetails = (Button)findViewById(R.id.btn_trip);
         username = (TextView)findViewById(R.id.txt_con_username) ;
         Bundle extras = getIntent().getExtras();
+
+
         if (extras != null)
         {
             conname = extras.getString("conname");
 
         }
+        getProfile();
         username.setText(conname);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,16 +68,56 @@ String conname;
         tripDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in1 = new Intent(getApplicationContext(),trip_setting.class);
-                in1.putExtra("conname",conname);
+                Intent in1 = new Intent(getApplicationContext(), TripMenuActivity.class);
+
                 startActivity(in1);
             }
         });
         changeBus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Intent in1 = new Intent(getApplicationContext(),ChangeBusActivity.class);
+                //startActivity(in1);
+                Intent in1 = new Intent(getApplicationContext(),RevenueActivity.class);
+                startActivity(in1);
             }
         });
     }
+
+    public void getProfile(){
+
+        reff= FirebaseDatabase.getInstance().getReference().child("admin").child(conname).child("bus");
+        reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                busname =snapshot.getValue().toString();
+                saveProfile();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void saveProfile(){
+        if(busname!=null){
+            Log.e("busss",busname);
+        }
+        else {
+            Log.e("busss","000000");
+        }
+
+        final String MyPREFERENCES = "CONDUCTOR_PROFILE" ;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("BUSID", busname);
+        editor.putString("CONNAME",conname);
+        editor.commit();
+    }
+
+
 }
