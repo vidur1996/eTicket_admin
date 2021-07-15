@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                     {
                                         Intent star3 = new Intent(getApplicationContext(), ConductorMainActivity.class);
                                         Toast.makeText(MainActivity.this,"Login as conductor",Toast.LENGTH_SHORT).show();
-                                        star3.putExtra("conname",username);
+                                        star3.putExtra("uname",username);
                                         startActivity(star3);
                                         username = "";
                                         pass="";

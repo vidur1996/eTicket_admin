@@ -24,7 +24,7 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 
 public class ConductorMainActivity extends AppCompatActivity {
-Button logout,tripDetails,profile,changeBus;
+Button logout,tripDetails,profile,revenueBus;
 TextView username;
 String conname,busname ;
 SharedPreferences sharedpreferences;
@@ -33,10 +33,12 @@ SharedPreferences sharedpreferences;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductor_main);
+        Log.e("111","CON MAIN SCREEN START");
+
 
         logout = (Button)findViewById(R.id.btn_con_logout);
         profile = (Button)findViewById(R.id.btn_con_profile);
-        changeBus = (Button)findViewById(R.id.btn_change_bus);
+        revenueBus = (Button)findViewById(R.id.btn_revenue);
         tripDetails = (Button)findViewById(R.id.btn_trip);
         username = (TextView)findViewById(R.id.txt_con_username) ;
         Bundle extras = getIntent().getExtras();
@@ -44,7 +46,7 @@ SharedPreferences sharedpreferences;
 
         if (extras != null)
         {
-            conname = extras.getString("conname");
+            conname = extras.getString("uname");
 
         }
         getProfile();
@@ -54,7 +56,8 @@ SharedPreferences sharedpreferences;
             public void onClick(View v) {
                 Intent in1 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in1);
-              finish();
+                Log.e("111","CON MAIN SCREEN end");
+                ConductorMainActivity.this.finish();
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
@@ -69,17 +72,19 @@ SharedPreferences sharedpreferences;
             @Override
             public void onClick(View v) {
                 Intent in1 = new Intent(getApplicationContext(), TripMenuActivity.class);
-
+                Log.e("111","CON MAIN SCREEN end");
                 startActivity(in1);
+                ConductorMainActivity.this.finish();
             }
         });
-        changeBus.setOnClickListener(new View.OnClickListener() {
+        revenueBus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent in1 = new Intent(getApplicationContext(),ChangeBusActivity.class);
-                //startActivity(in1);
+
                 Intent in1 = new Intent(getApplicationContext(),RevenueActivity.class);
                 startActivity(in1);
+                Log.e("111","CON MAIN SCREEN end");
+                ConductorMainActivity.this.finish();
             }
         });
     }
@@ -104,13 +109,6 @@ SharedPreferences sharedpreferences;
     }
 
     public void saveProfile(){
-        if(busname!=null){
-            Log.e("busss",busname);
-        }
-        else {
-            Log.e("busss","000000");
-        }
-
         final String MyPREFERENCES = "CONDUCTOR_PROFILE" ;
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();

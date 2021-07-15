@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.eticket_admin.R;
@@ -26,6 +30,7 @@ import java.util.UUID;
 
 public class TimeOutScreenActivity extends AppCompatActivity {
     TextView text_out;
+    Button continuee;
     Date current_time;
     String price,conname,pass_name,ticketTo,ticketFrom;
     String bus_name,date1;
@@ -43,6 +48,8 @@ public class TimeOutScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeout_screem);
+        continuee=findViewById(R.id.btnSuccess);
+        Log.e("444","timeout SCREEN start");
         ticketid=genarateId();
         text_out = findViewById(R.id.text_out);
         current_time = Calendar.getInstance().getTime();
@@ -53,7 +60,6 @@ public class TimeOutScreenActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null)
         {
-
             conname = extras.getString("conname");
             price = extras.getString("price");
             pass_name = extras.getString("pass_name");
@@ -75,21 +81,30 @@ public class TimeOutScreenActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished)
             {
-                text_out.setText("ticket successful");
+                continuee.setVisibility(View.INVISIBLE);
+                text_out.setText("ticket processing");
             }
 
             @Override
             public void onFinish() {
-        if(updateSuccess && updatePassengerSuccess){
-            Intent i2 = new Intent(getApplicationContext(), CurrentTripMenuActivity.class);
-            i2.putExtra("conname",conname);
-            i2.putExtra("bus_name",bus_name);
-            startActivity(i2);
-            TimeOutScreenActivity.this.finish();
-        }
+                text_out.setText("ticket successdul");
+                continuee.setVisibility(View.VISIBLE);
             }
 
         }.start();
+
+        continuee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(updateSuccess && updatePassengerSuccess){
+                    Intent i2 = new Intent(getApplicationContext(), CurrentTripMenuActivity.class);
+                    startActivity(i2);
+                    Log.e("444","timeout SCREEN end");
+                    TimeOutScreenActivity.this.finish();
+                }
+            }
+        });
+
     }
 
 

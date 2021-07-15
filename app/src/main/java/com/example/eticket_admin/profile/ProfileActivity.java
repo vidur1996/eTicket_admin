@@ -29,8 +29,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        //setSupportActionBar();
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         btn_changePassword = (Button)findViewById(R.id.btn_profile_change_password);
         btn_editProfile = (Button)findViewById(R.id.btn_profile_edit);
         tv_name = (TextView)findViewById(R.id.tv_profile_name);

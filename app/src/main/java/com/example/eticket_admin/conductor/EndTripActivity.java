@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class EndTripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_trip);
+        Log.e("666","end trip SCREEN START");
         tv_startTime = findViewById(R.id.tv_start_time);
         tv_tripTo = findViewById(R.id.tv_to);
         tv_tripFrom = findViewById(R.id.tv_from);
@@ -132,6 +134,7 @@ public class EndTripActivity extends AppCompatActivity {
                         Intent in1 = new Intent(getApplicationContext(), TripMenuActivity.class);
                         in1.putExtra("conname",conName);
                         startActivity(in1);
+                        Log.e("666","end trip SCREEN end");
                         EndTripActivity.this.finish();
 
 
@@ -152,5 +155,14 @@ public class EndTripActivity extends AppCompatActivity {
                     }
                 }).show();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i2 = new Intent(getApplicationContext(), CurrentTripMenuActivity.class);
+        startActivity(i2);
+        Log.e("666","end trip SCREEN end");
+        EndTripActivity.this.finish();
     }
 }

@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -25,21 +27,16 @@ public class ScanTicketActivity extends AppCompatActivity {
     CodeScanner codeScanner;
     CodeScannerView scannView;
     String conname,bus_name;
+    SharedPreferences profilePreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_ticket);
         scannView = findViewById(R.id.scannerView);
         codeScanner = new CodeScanner(this,scannView);
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null)
-        {
-            conname = extras.getString("conname");
-            bus_name = extras.getString("bus_name");
-        }
-
-
+        profilePreferences = getSharedPreferences("CONDUCTOR_PROFILE", Context.MODE_PRIVATE);
+        conname = profilePreferences.getString("CONNAME","");
+        bus_name = profilePreferences.getString("BUSID","");
 
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
