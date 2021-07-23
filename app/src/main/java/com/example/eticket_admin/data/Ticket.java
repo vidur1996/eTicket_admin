@@ -7,6 +7,16 @@ public class Ticket {
     String ticketTo;
     String ticketFrom;
 
+    public String getTicketTime() {
+        return ticketTime;
+    }
+
+    public void setTicketTime(String ticketTime) {
+        this.ticketTime = ticketTime;
+    }
+
+    String ticketTime;
+
     public Ticket() {
 
     }

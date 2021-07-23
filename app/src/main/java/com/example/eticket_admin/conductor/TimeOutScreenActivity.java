@@ -113,6 +113,7 @@ public class TimeOutScreenActivity extends AppCompatActivity {
                             reffer3.child("passenger").child(tripid).child(ticketid).child("userName").setValue(pass_name);
                             reffer3.child("passenger").child(tripid).child(ticketid).child("ticketTo").setValue(ticketTo);
                             reffer3.child("passenger").child(tripid).child(ticketid).child("ticketFrom").setValue(ticketFrom);
+                            reffer3.child("passenger").child(tripid).child(ticketid).child("ticketTime").setValue(date1);
                             reffer3.child("passenger").child(tripid).child(ticketid).child("ticketValue").setValue(price).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
@@ -144,6 +145,7 @@ public class TimeOutScreenActivity extends AppCompatActivity {
                     preffer.child(date1).child("ticketTo").setValue(ticketTo);
                     preffer.child(date1).child("ticketFrom").setValue(ticketFrom);
                     preffer.child(date1).child("busName").setValue(bus_name);
+                    preffer.child(date1).child("ticketTime").setValue(date1);
                     preffer.child(date1).child("price").setValue(price).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<Void> task) {
@@ -167,6 +169,7 @@ public class TimeOutScreenActivity extends AppCompatActivity {
                     curentReffer.child("ticketTo").setValue(ticketTo);
                     curentReffer.child("ticketFrom").setValue(ticketFrom);
                     curentReffer.child("busName").setValue(bus_name);
+                    curentReffer.child("ticketTime").setValue(date1);
                     curentReffer.child("price").setValue(price).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<Void> task) {
