@@ -73,12 +73,12 @@ public class TimeOutScreenActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 continuee.setVisibility(View.INVISIBLE);
-                text_out.setText("ticket processing");
+                text_out.setText("Ticket processing");
             }
 
             @Override
             public void onFinish() {
-                text_out.setText("ticket successdul");
+                text_out.setText("Ticket Confirmed");
                 continuee.setVisibility(View.VISIBLE);
             }
 

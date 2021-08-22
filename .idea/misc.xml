@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/drawable/bg_round_border_et.xml" value="0.2169230769230769" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_add_bus.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_addpassenger.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_adduser.xml" value="0.1824074074074074" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_admin_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_change_bus.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_conductor_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_confirm_admin.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_confirm_conductor.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_confirm_registration.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_confirm_ticket.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_confirm_topup.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_edit_profile.xml" value="0.1824074074074074" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_end_trip.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_fare_update.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_main_menu.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_menu_conductor.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_menu_topup.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_new_trip_create.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_oldt_trips.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_passenger_list_acitivty.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_remove_conductor.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_remove_passenger.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_remove_topup.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_removeuser.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_revenue.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_saveuser.xml" value="0.14351851851851852" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_scan_ticket.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_signup.xml" value="0.1824074074074074" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_timeout_screem.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_trip_details.xml" value="0.20416666666666666" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/activity_trip_setting.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/item_confirm_user.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/item_delete_user.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/item_revenue.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/item_ticket.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/item_trip.xml" value="0.1787037037037037" />
+        <entry key="..\:/computer_science/android/eTicket_admin/app/src/main/res/layout/passenger_item.xml" value="0.1787037037037037" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

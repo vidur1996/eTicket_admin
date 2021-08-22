@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFBB69"
+    android:background="#ABEBC6"
     tools:context=".conductor.TripMenuActivity">
 
 
@@ -13,6 +13,7 @@
         android:layout_width="320dp"
         android:layout_height="41dp"
         android:text="TextView"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

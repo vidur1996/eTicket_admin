@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class fare_update extends AppCompatActivity {
-    String text = "CURRENT RATE";
+    String text = "Current Rate";
     String fare, adminname;
     TextView con_txt;
     EditText new_fare;
@@ -46,7 +46,7 @@ public class fare_update extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 fare = snapshot.child("rate").getValue().toString().trim();
-                con_txt.setText(text + " - " + fare);
+                con_txt.setText(text + " - Rs." + fare);
 
             }
 

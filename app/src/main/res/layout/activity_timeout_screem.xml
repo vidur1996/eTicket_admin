@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_green"
     tools:context=".conductor.TimeOutScreenActivity">
 
     <TextView
@@ -11,6 +12,8 @@
         android:layout_width="272dp"
         android:layout_height="196dp"
         android:gravity="center"
+        android:background="@color/white"
+        android:padding="5dp"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -21,9 +24,11 @@
 
     <Button
         android:id="@+id/btnSuccess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_marginTop="70dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:text="continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

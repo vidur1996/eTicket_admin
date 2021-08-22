@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FEC989"
+    android:background="@color/bg_green"
     tools:context=".topup.menu_topup">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:id="@+id/textView_topup_lb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TOPUP PASSENGER"
+            android:text="TOP-UP PASSENGER"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -46,9 +46,9 @@
         <EditText
             android:id="@+id/editText_username_topup"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginStart="60dp"
-            android:background="@drawable/green_border"
+            android:background="@drawable/bg_round_border_et"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="60dp"
             android:hint="Username"
@@ -86,13 +86,13 @@
         <EditText
             android:id="@+id/amount_txt"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="200dp"
             android:hint="Amount"
             android:inputType="number"
-            android:background="@drawable/green_border"
+            android:background="@drawable/bg_round_border_et"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,14 +101,12 @@
         <Button
             android:id="@+id/confirm_pay_btn"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:text="CONFIRM TOPUP"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/amount_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -117,12 +115,12 @@
         android:id="@+id/clear_pay_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:layout_marginTop="20dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:text="clear"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirm_pay_btn"/>
@@ -135,39 +133,37 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintTop_toBottomOf="@id/clear_pay_btn"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
 
            />
 
         <Button
-        android:id="@+id/change_password_topup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Profile"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clear_pay_btn"
+            android:id="@+id/change_password_topup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:text="Profile"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3"
       />
 
 
     <Button
         android:id="@+id/out_btn3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:text="logout"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_password_topup"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/change_password_topup" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

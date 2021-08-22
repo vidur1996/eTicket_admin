@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_green"
     tools:context=".admin.removeuser.removeuser">
 
     <TextView
@@ -13,63 +14,66 @@
         android:gravity="center"
         android:text="REMOVE USERS"
         android:textSize="24sp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/r_passenger_btn"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:text="PASSENGER"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r_txt"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintTop_toBottomOf="@+id/r_txt" />
 
     <Button
         android:id="@+id/r_conductor_btn"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
-        android:textSize="24sp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textSize="18sp"
         android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:text="CONDUCTOR"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r_passenger_btn"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintTop_toBottomOf="@+id/r_passenger_btn" />
 
     <Button
         android:id="@+id/r_topup_btn"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:text="TOPUP DEALER"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r_conductor_btn"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintTop_toBottomOf="@+id/r_conductor_btn" />
 
     <Button
         android:id="@+id/r_back_btn2"
-        android:layout_width="320dp"
-        android:layout_height="87dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:text="BACK"
-        android:textSize="24sp"
+        android:visibility="gone"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/r_topup_btn" />

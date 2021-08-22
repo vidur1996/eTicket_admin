@@ -3,6 +3,7 @@ package com.example.eticket_admin.conductor;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,12 +39,14 @@ public class PassengerListAcitivty extends AppCompatActivity {
         setContentView(R.layout.activity_passenger_list_acitivty);
         profilePreferences = getSharedPreferences("CONDUCTOR_PROFILE", Context.MODE_PRIVATE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        tripid = sharedpreferences.getString("trip_id", "");
-        busname = profilePreferences.getString("BUSID", "");
+        //tripid = sharedpreferences.getString("trip_id", "");
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-
+            tripid = extras.getString("trip_id");
         }
+        busname = profilePreferences.getString("BUSID", "");
+        Log.e("tripid",tripid);
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("bus").child(busname).child("passenger").child(tripid);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override

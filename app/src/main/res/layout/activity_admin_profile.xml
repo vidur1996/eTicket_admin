@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_green"
     tools:context=".profile.ChangePasswordActivity">
 
     <TextView
@@ -17,6 +18,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_password"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/label_password_current"
@@ -95,18 +113,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_password_new"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_password_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        app:passwordToggleEnabled="true"
-        app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/label_password_confirm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_password_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="20dp"
+                app:passwordToggleEnabled="true"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_password_confirm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password_confirm"
@@ -114,12 +134,15 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 
 
     <Button
         android:id="@+id/btn_update_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:textAllCaps="false"
         android:text="Change Password"
         android:layout_marginStart="50dp"
@@ -128,5 +151,5 @@
         android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_password_confirm"/>
+        app:layout_constraintTop_toBottomOf="@id/card_password"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.eticket_admin.conductor.adapter;
 
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
         holder.btn_passenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("tripidddd",myListData.getStartTime());
                 callback.onAcceptClick(myListData.getStartTime());
             }
         });
