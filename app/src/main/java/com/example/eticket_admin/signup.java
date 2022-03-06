@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,7 +58,9 @@ public class signup extends AppCompatActivity {
         spinner_userType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (String.valueOf(spinner_userType.getSelectedItemId()) == "1") {
+                Log.e("eoor",spinner_userType.getSelectedItem().toString());
+               // if (String.valueOf(spinner_userType.getSelectedItemId()) == " 1") {
+                if((spinner_userType.getSelectedItem().toString().equals("Conductor"))){
                     editText_busId.setVisibility(View.VISIBLE);
                     tv_bus_label.setVisibility(View.VISIBLE);
                 } else {

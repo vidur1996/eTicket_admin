@@ -121,6 +121,7 @@ public class ConfirmPassengerActivity extends AppCompatActivity implements UserP
         mem.setUsername(acceptUser.getUsername());
         mem.setPassword(acceptUser.getPassword());
         mem.setLock(acceptUser.getLock());
+        mem.setBalance(0);
 
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference();
 

@@ -50,9 +50,11 @@ public class ConductorMainActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent in1 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in1);
                 ConductorMainActivity.this.finish();
+                removeProfile();
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +110,21 @@ public class ConductorMainActivity extends AppCompatActivity {
         editor.putString("BUSID", busname);
         editor.putString("CONNAME", conname);
         editor.commit();
+    }
+
+    public void removeProfile(){
+        final String MyPREFERENCES = "CONDUCTOR_PROFILE";
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.remove("text").commit();
+
+        sharedpreferences = getSharedPreferences("trip_details", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sharedpreferences.edit();
+        editor1.putString("trip_id", "");
+        editor1.commit();
+
+
+
     }
 
 

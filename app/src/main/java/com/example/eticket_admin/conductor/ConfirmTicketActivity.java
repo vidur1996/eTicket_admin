@@ -1,8 +1,11 @@
 package com.example.eticket_admin.conductor;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eticket_admin.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -103,7 +107,8 @@ public class ConfirmTicketActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    id1.setText("value less ");
+                   // id1.setText("value less ");
+                    showAlert();
                 }
             }
         });
@@ -131,5 +136,24 @@ public class ConfirmTicketActivity extends AppCompatActivity {
         from = arr[2];
         cos_user = arr[0];
         price = x;
+    }
+
+    public void showAlert() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("low Balance")
+                .setMessage("low Balance")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                    }
+                }).show();
+
     }
 }

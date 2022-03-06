@@ -60,4 +60,9 @@ public class adduser extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

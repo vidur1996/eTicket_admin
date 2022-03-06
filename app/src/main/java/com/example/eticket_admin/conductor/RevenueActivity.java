@@ -95,8 +95,13 @@ public class RevenueActivity extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                String revenue = snapshot.getValue().toString();
-                totalRevenue.setText("Rs." + revenue);
+                if (snapshot.exists()) {
+                    String revenue = snapshot.getValue().toString();
+                    totalRevenue.setText("Rs." + revenue);
+                }
+                else    {
+                    totalRevenue.setText("Rs. 0.00" );
+                }
 
             }
 

@@ -55,7 +55,7 @@ public class main_menu extends AppCompatActivity {
 
 
                 startActivity(in1);
-                main_menu.this.finish();
+               // main_menu.this.finish();
             }
         });
 
@@ -67,7 +67,7 @@ public class main_menu extends AppCompatActivity {
 
 
                 startActivity(in1);
-                main_menu.this.finish();
+               // main_menu.this.finish();
             }
         });
 
@@ -78,7 +78,7 @@ public class main_menu extends AppCompatActivity {
 
 
                 startActivity(in1);
-                main_menu.this.finish();
+              //  main_menu.this.finish();
             }
         });
 

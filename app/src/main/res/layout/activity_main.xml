@@ -46,7 +46,6 @@
         android:paddingStart="5dp"
         android:hint="UserName"
         android:inputType="textPersonName"
-        android:text="com_tom"
         android:textColorLink="@android:color/background_light"
         android:layout_marginTop="20dp"
         android:layout_marginStart="40dp"
@@ -90,7 +89,7 @@
             android:layout_gravity="center_vertical"
             android:background="@color/white"
             android:inputType="textPassword"
-            android:text="12345" />
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
